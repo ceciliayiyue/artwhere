@@ -1,13 +1,14 @@
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse
+import constants
 
 """Script to scrape a Wikidata catalog page and extract Q-IDs from a specific table, handling nested links."""
 
 def fetch_page(url):
     """Fetch HTML content of a URL with proper headers."""
     try:
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=constants.HEADERS)
         response.raise_for_status()
         return response.text
     except Exception as e:
