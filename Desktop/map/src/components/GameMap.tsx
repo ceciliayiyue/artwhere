@@ -350,21 +350,21 @@ export const GameMap: React.FC = () => {
       <div ref={mapContainerRef} className="w-full h-full z-0" />
 
       {gameState === 'playing' && (
-        <div className="absolute top-4 left-4 bg-white rounded-lg shadow-lg p-6 z-10">
-          <p className="text-lg text-gray-700 font-bold mb-2">
-            Click on the map to place your pins
+        <div className="absolute top-2 left-2 sm:top-4 sm:left-4 bg-white rounded-lg shadow-lg p-3 sm:p-6 z-10 max-w-[calc(100%-1rem)] sm:max-w-none">
+          <p className="text-sm sm:text-lg text-gray-700 font-bold mb-2 sm:mb-2">
+            Tap map to place pins
           </p>
-          <div className="mt-4 space-y-3">
-            <div className="flex items-center text-base">
-              <div className="w-8 h-8 rounded-full mr-3" style={{ backgroundColor: '#A0826D' }}></div>
+          <div className="mt-2 sm:mt-4 space-y-2 sm:space-y-3">
+            <div className="flex items-center text-xs sm:text-base">
+              <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full mr-2 sm:mr-3 flex-shrink-0" style={{ backgroundColor: '#A0826D' }}></div>
               <span className={createdPin.location ? 'text-green-600 font-bold' : 'text-gray-600 font-semibold'}>
-                {createdPin.location ? '✓ Created location' : 'Where created?'}
+                {createdPin.location ? '✓ Created' : 'Where created?'}
               </span>
             </div>
-            <div className="flex items-center text-base">
-              <div className="w-8 h-8 rounded-full mr-3" style={{ backgroundColor: '#8B6F47' }}></div>
+            <div className="flex items-center text-xs sm:text-base">
+              <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full mr-2 sm:mr-3 flex-shrink-0" style={{ backgroundColor: '#8B6F47' }}></div>
               <span className={currentPin.location ? 'text-green-600 font-bold' : 'text-gray-600 font-semibold'}>
-                {currentPin.location ? '✓ Current location' : 'Where now?'}
+                {currentPin.location ? '✓ Current' : 'Where now?'}
               </span>
             </div>
           </div>
