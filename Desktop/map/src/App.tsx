@@ -4,7 +4,6 @@ import { PaintingDisplay } from './components/PaintingDisplay';
 import { GameMap } from './components/GameMap';
 import { InstructionsPanel } from './components/InstructionsPanel';
 import { ControlPanel } from './components/ControlPanel';
-import { ResultsDisplay } from './components/ResultsDisplay';
 import { StoryPanel } from './components/StoryPanel';
 import type { Painting } from './types/game';
 
@@ -64,15 +63,17 @@ const GameContent: React.FC = () => {
     <div className="h-screen w-screen overflow-hidden flex flex-col bg-gray-100">
       <InstructionsPanel />
 
-      <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
+      <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
         {/* Left Side: Painting Display + Story Panel */}
-        <div className="w-full lg:w-[30%] h-1/2 lg:h-full flex flex-col overflow-y-auto">
-          <PaintingDisplay />
+        <div className="w-full md:w-[35%] lg:w-[30%] h-auto md:h-full flex flex-col overflow-y-auto">
+          <div className="min-h-[200px] md:min-h-0 md:flex-1">
+            <PaintingDisplay />
+          </div>
           <StoryPanel />
         </div>
 
         {/* Map - Right/Bottom */}
-        <div className="w-full lg:w-[70%] h-1/2 lg:h-full relative">
+        <div className="flex-1 md:w-[65%] lg:w-[70%] min-h-[300px] md:h-full relative">
           <GameMap />
         </div>
       </div>
