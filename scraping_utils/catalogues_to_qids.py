@@ -4,8 +4,8 @@ from tqdm import tqdm
 
 """Script to read catalogue URLs from a file, extract Q-IDs from each page, and save them to a text file."""
 
-INPUT_FILE = "./output/Collection_catalogs.txt"
-OUTPUT_FILE = "./output/painting_QIDS.txt"
+INPUT_FILE = "./output/small_catalogues.txt"
+OUTPUT_FILE = "./output/small_famous_painting_QIDS.txt"
 
 def save_qids_to_file(qids, filename):
     """Save Q-IDs to a text file, one per line."""
