@@ -6,6 +6,8 @@ import constants
 
 """Script to scrape a catalogue page and extract URLs from a specific table."""
 
+OUTPUT_FILE = "./output/Collection_catalogs.txt"
+
 def fetch_page(url):
     """Fetch HTML content of a URL with proper headers."""
     response = requests.get(url, headers=constants.HEADERS)
@@ -45,5 +47,4 @@ if __name__ == "__main__":
     links = extract_table_links(html)
     catalog_prefix = "https://www.wikidata.org/wiki/Wikidata:WikiProject_sum_of_all_paintings/Catalog/"
     catalog_links = [link for link in links if link.startswith(catalog_prefix)]
-    slug = os.path.basename(urlparse(url).path)
-    save_links_to_file(catalog_links, f"{slug}.txt")
+    save_links_to_file(catalog_links, OUTPUT_FILE)
