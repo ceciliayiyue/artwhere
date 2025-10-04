@@ -81,9 +81,6 @@ const GameContent: React.FC = () => {
         <ControlPanel />
       </div>
 
-      {/* Results Display - Overlay */}
-      <ResultsDisplay />
-
       {/* Story Panel - Bottom Slide Up */}
       <StoryPanel />
     </div>

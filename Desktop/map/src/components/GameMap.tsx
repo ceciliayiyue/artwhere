@@ -18,15 +18,21 @@ L.Icon.Default.mergeOptions({
 
 // Custom pin icons
 const createPinIcon = (color: string, label: string) => {
-  const bgColor = color === 'blue' ? '#3B82F6' : '#EF4444';
-  const fillColor = color === 'blue' ? '#3B82F6' : '#EF4444';
+  // Color mapping for different pin types
+  const colorMap: { [key: string]: string } = {
+    lightBrown: '#A0826D',   // User guess for "created"
+    darkBrown: '#8B6F47',    // User guess for "current"
+    green: '#10B981',        // Correct answers (all)
+  };
+
+  const fillColor = colorMap[color] || '#6B7280'; // fallback to gray
 
   return L.divIcon({
     className: 'custom-pin',
     html: `
       <div style="position: relative;">
         <div style="position: absolute; top: -40px; left: 50%; transform: translateX(-50%); white-space: nowrap;">
-          <span style="background-color: ${bgColor}; color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+          <span style="background-color: ${fillColor}; color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
             ${label}
           </span>
         </div>
@@ -122,10 +128,15 @@ export const GameMap: React.FC = () => {
     }
 
     if (createdPin.location) {
+      // If submitted and correct, show green; otherwise brown
+      const isCorrect = gameState === 'submitted' && result?.createdCorrect;
+      const pinColor = isCorrect ? 'green' : 'lightBrown';
+      const pinLabel = isCorrect ? '✓ Correct!' : 'Where created?';
+
       const marker = L.marker(
         [createdPin.location.lat, createdPin.location.lng],
         {
-          icon: createPinIcon('blue', 'Where created?'),
+          icon: createPinIcon(pinColor, pinLabel),
           draggable: gameState === 'playing',
         }
       ).addTo(mapRef.current);
@@ -137,7 +148,7 @@ export const GameMap: React.FC = () => {
 
       createdMarkerRef.current = marker;
     }
-  }, [createdPin.location, gameState, setCreatedPin]);
+  }, [createdPin.location, gameState, result, setCreatedPin]);
 
   // Update current pin marker
   useEffect(() => {
@@ -149,10 +160,15 @@ export const GameMap: React.FC = () => {
     }
 
     if (currentPin.location) {
+      // If submitted and correct, show green; otherwise brown
+      const isCorrect = gameState === 'submitted' && result?.currentCorrect;
+      const pinColor = isCorrect ? 'green' : 'darkBrown';
+      const pinLabel = isCorrect ? '✓ Correct!' : 'Where now?';
+
       const marker = L.marker(
         [currentPin.location.lat, currentPin.location.lng],
         {
-          icon: createPinIcon('red', 'Where now?'),
+          icon: createPinIcon(pinColor, pinLabel),
           draggable: gameState === 'playing',
         }
       ).addTo(mapRef.current);
@@ -164,9 +180,9 @@ export const GameMap: React.FC = () => {
 
       currentMarkerRef.current = marker;
     }
-  }, [currentPin.location, gameState, setCurrentPin]);
+  }, [currentPin.location, gameState, result, setCurrentPin]);
 
-  // Show result lines after submission
+  // Show journey lines after submission
   useEffect(() => {
     if (!mapRef.current || !painting || gameState !== 'submitted' || !result) return;
 
@@ -176,52 +192,53 @@ export const GameMap: React.FC = () => {
     correctMarkersRef.current.forEach(marker => mapRef.current?.removeLayer(marker));
     correctMarkersRef.current = [];
 
-    // Draw line from created guess to actual if wrong
-    if (!result.createdCorrect && createdPin.location) {
-      const line = L.polyline(
+    // Draw USER'S imagined journey (BROWN line from created guess to current guess)
+    if (createdPin.location && currentPin.location) {
+      const userJourneyLine = L.polyline(
         [
           [createdPin.location.lat, createdPin.location.lng],
-          [painting.createdLocation.lat, painting.createdLocation.lng],
+          [currentPin.location.lat, currentPin.location.lng],
         ],
         {
-          color: '#3B82F6',
-          weight: 2,
+          color: '#8B6F47', // Brown - user's imagined path
+          weight: 3,
           opacity: 0.7,
-          dashArray: '10, 10',
+          dashArray: '5, 10',
         }
       ).addTo(mapRef.current);
-      resultLinesRef.current.push(line);
-
-      // Add correct location marker
-      const correctMarker = L.marker(
-        [painting.createdLocation.lat, painting.createdLocation.lng],
-        { icon: createPinIcon('blue', '✓ Created here') }
-      ).addTo(mapRef.current);
-      correctMarkersRef.current.push(correctMarker);
+      resultLinesRef.current.push(userJourneyLine);
     }
 
-    // Draw line from current guess to actual if wrong
-    if (!result.currentCorrect && currentPin.location) {
-      const line = L.polyline(
-        [
-          [currentPin.location.lat, currentPin.location.lng],
-          [painting.currentLocation.lat, painting.currentLocation.lng],
-        ],
-        {
-          color: '#EF4444',
-          weight: 2,
-          opacity: 0.7,
-          dashArray: '10, 10',
-        }
-      ).addTo(mapRef.current);
-      resultLinesRef.current.push(line);
-
-      // Add correct location marker
-      const correctMarker = L.marker(
+    // Draw ACTUAL painting journey (GREEN line from created to current location)
+    const actualJourneyLine = L.polyline(
+      [
+        [painting.createdLocation.lat, painting.createdLocation.lng],
         [painting.currentLocation.lat, painting.currentLocation.lng],
-        { icon: createPinIcon('red', '✓ Located here') }
+      ],
+      {
+        color: '#10B981', // Green - actual path
+        weight: 3,
+        opacity: 0.7,
+        dashArray: '5, 10',
+      }
+    ).addTo(mapRef.current);
+    resultLinesRef.current.push(actualJourneyLine);
+
+    // Add correct location markers only if user was wrong
+    if (!result.createdCorrect) {
+      const correctCreatedMarker = L.marker(
+        [painting.createdLocation.lat, painting.createdLocation.lng],
+        { icon: createPinIcon('green', '✓ Created here') }
       ).addTo(mapRef.current);
-      correctMarkersRef.current.push(correctMarker);
+      correctMarkersRef.current.push(correctCreatedMarker);
+    }
+
+    if (!result.currentCorrect) {
+      const correctCurrentMarker = L.marker(
+        [painting.currentLocation.lat, painting.currentLocation.lng],
+        { icon: createPinIcon('green', '✓ Located here') }
+      ).addTo(mapRef.current);
+      correctMarkersRef.current.push(correctCurrentMarker);
     }
   }, [gameState, result, painting, createdPin.location, currentPin.location]);
 
@@ -249,13 +266,13 @@ export const GameMap: React.FC = () => {
           </p>
           <div className="mt-2 space-y-1">
             <div className="flex items-center text-xs">
-              <div className="w-4 h-4 bg-blue-500 rounded-full mr-2"></div>
+              <div className="w-4 h-4 rounded-full mr-2" style={{ backgroundColor: '#A0826D' }}></div>
               <span className={createdPin.location ? 'text-green-600 font-semibold' : 'text-gray-500'}>
                 {createdPin.location ? '✓ Created location' : 'Where created?'}
               </span>
             </div>
             <div className="flex items-center text-xs">
-              <div className="w-4 h-4 bg-red-500 rounded-full mr-2"></div>
+              <div className="w-4 h-4 rounded-full mr-2" style={{ backgroundColor: '#8B6F47' }}></div>
               <span className={currentPin.location ? 'text-green-600 font-semibold' : 'text-gray-500'}>
                 {currentPin.location ? '✓ Current location' : 'Where now?'}
               </span>
