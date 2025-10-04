@@ -65,13 +65,14 @@ const GameContent: React.FC = () => {
       <InstructionsPanel />
 
       <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
-        {/* Painting Display - Left/Top */}
-        <div className="w-full lg:w-1/2 h-1/2 lg:h-full">
+        {/* Left Side: Painting Display + Story Panel */}
+        <div className="w-full lg:w-[30%] h-1/2 lg:h-full flex flex-col overflow-y-auto">
           <PaintingDisplay />
+          <StoryPanel />
         </div>
 
         {/* Map - Right/Bottom */}
-        <div className="w-full lg:w-1/2 h-1/2 lg:h-full relative">
+        <div className="w-full lg:w-[70%] h-1/2 lg:h-full relative">
           <GameMap />
         </div>
       </div>
@@ -80,9 +81,6 @@ const GameContent: React.FC = () => {
       <div className="relative z-30">
         <ControlPanel />
       </div>
-
-      {/* Story Panel - Bottom Slide Up */}
-      <StoryPanel />
     </div>
   );
 };

@@ -260,20 +260,20 @@ export const GameMap: React.FC = () => {
       <div ref={mapContainerRef} className="w-full h-full z-0" />
 
       {gameState === 'playing' && (
-        <div className="absolute top-4 left-4 bg-white rounded-lg shadow-lg p-3 z-10">
-          <p className="text-sm text-gray-600">
+        <div className="absolute top-4 left-4 bg-white rounded-lg shadow-lg p-6 z-10">
+          <p className="text-lg text-gray-700 font-bold mb-2">
             Click on the map to place your pins
           </p>
-          <div className="mt-2 space-y-1">
-            <div className="flex items-center text-xs">
-              <div className="w-4 h-4 rounded-full mr-2" style={{ backgroundColor: '#A0826D' }}></div>
-              <span className={createdPin.location ? 'text-green-600 font-semibold' : 'text-gray-500'}>
+          <div className="mt-4 space-y-3">
+            <div className="flex items-center text-base">
+              <div className="w-8 h-8 rounded-full mr-3" style={{ backgroundColor: '#A0826D' }}></div>
+              <span className={createdPin.location ? 'text-green-600 font-bold' : 'text-gray-600 font-semibold'}>
                 {createdPin.location ? '✓ Created location' : 'Where created?'}
               </span>
             </div>
-            <div className="flex items-center text-xs">
-              <div className="w-4 h-4 rounded-full mr-2" style={{ backgroundColor: '#8B6F47' }}></div>
-              <span className={currentPin.location ? 'text-green-600 font-semibold' : 'text-gray-500'}>
+            <div className="flex items-center text-base">
+              <div className="w-8 h-8 rounded-full mr-3" style={{ backgroundColor: '#8B6F47' }}></div>
+              <span className={currentPin.location ? 'text-green-600 font-bold' : 'text-gray-600 font-semibold'}>
                 {currentPin.location ? '✓ Current location' : 'Where now?'}
               </span>
             </div>
