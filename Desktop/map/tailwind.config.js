@@ -6,10 +6,18 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'spartan': ['"League Spartan"', 'sans-serif'],
+        'sans': ['"DM Sans"', 'sans-serif'],
+      },
       colors: {
-        primary: '#4F46E5',
+        primary: '#6B1B9A',
         secondary: '#10B981',
         accent: '#F59E0B',
+        purple: {
+          primary: '#6B1B9A',
+          dark: '#4A1268',
+        },
       },
       animation: {
         'bounce-in': 'bounceIn 0.5s ease-out',

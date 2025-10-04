@@ -58,6 +58,8 @@ export const GameMap: React.FC = () => {
   const currentMarkerRef = useRef<L.Marker | null>(null);
   const resultLinesRef = useRef<L.Polyline[]>([]);
   const correctMarkersRef = useRef<L.Marker[]>([]);
+  const boatMarkerRef = useRef<L.Marker | null>(null);
+  const animationFrameRef = useRef<number | null>(null);
 
   const {
     createdPin,
@@ -242,6 +244,84 @@ export const GameMap: React.FC = () => {
     }
   }, [gameState, result, painting, createdPin.location, currentPin.location]);
 
+  // Animate boat with painting miniature along journey path
+  useEffect(() => {
+    if (!mapRef.current || !painting || gameState !== 'submitted') return;
+
+    // Clear existing boat if any
+    if (boatMarkerRef.current) {
+      mapRef.current.removeLayer(boatMarkerRef.current);
+      boatMarkerRef.current = null;
+    }
+    if (animationFrameRef.current) {
+      cancelAnimationFrame(animationFrameRef.current);
+      animationFrameRef.current = null;
+    }
+
+    // Create boat icon with painting thumbnail
+    const boatIcon = L.divIcon({
+      className: 'boat-marker',
+      html: `
+        <div style="display: flex; align-items: center; gap: 8px; transform: translateX(-50%) translateY(-100%);">
+          <div style="font-size: 40px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));">⛵</div>
+          <div style="width: 50px; height: 50px; border: 3px solid white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.3); background: white;">
+            <img src="${painting.imageUrl}" style="width: 100%; height: 100%; object-fit: cover;" />
+          </div>
+        </div>
+      `,
+      iconSize: [100, 60],
+      iconAnchor: [50, 60],
+    });
+
+    // Start position (where created)
+    const startLat = painting.createdLocation.lat;
+    const startLng = painting.createdLocation.lng;
+
+    // End position (where now)
+    const endLat = painting.currentLocation.lat;
+    const endLng = painting.currentLocation.lng;
+
+    // Create marker at start position
+    const boatMarker = L.marker([startLat, startLng], { icon: boatIcon }).addTo(mapRef.current);
+    boatMarkerRef.current = boatMarker;
+
+    // Animate the boat
+    const duration = 4000; // 4 seconds
+    const startTime = Date.now();
+
+    const animate = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      // Easing function for smooth animation
+      const easeProgress = progress < 0.5
+        ? 2 * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+
+      // Calculate current position
+      const currentLat = startLat + (endLat - startLat) * easeProgress;
+      const currentLng = startLng + (endLng - startLng) * easeProgress;
+
+      // Update marker position
+      if (boatMarkerRef.current) {
+        boatMarkerRef.current.setLatLng([currentLat, currentLng]);
+      }
+
+      // Continue animation if not finished
+      if (progress < 1) {
+        animationFrameRef.current = requestAnimationFrame(animate);
+      }
+    };
+
+    animate();
+
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, [gameState, painting]);
+
   // Clear all result markers when transitioning to next painting
   useEffect(() => {
     if (gameState === 'loading' && mapRef.current) {
@@ -252,6 +332,16 @@ export const GameMap: React.FC = () => {
       // Clear correct answer markers
       correctMarkersRef.current.forEach(marker => mapRef.current?.removeLayer(marker));
       correctMarkersRef.current = [];
+
+      // Clear boat marker
+      if (boatMarkerRef.current) {
+        mapRef.current.removeLayer(boatMarkerRef.current);
+        boatMarkerRef.current = null;
+      }
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
+      }
     }
   }, [gameState]);
 

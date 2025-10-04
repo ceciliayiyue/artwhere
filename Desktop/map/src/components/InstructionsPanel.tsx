@@ -13,18 +13,18 @@ export const InstructionsPanel: React.FC = () => {
           animate={{ height: 'auto', opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="overflow-hidden bg-gradient-to-r from-primary to-indigo-600 text-white"
+          className="overflow-hidden bg-gradient-to-r from-purple-primary to-purple-dark text-white"
         >
           <div className="px-6 py-4">
             <div className="flex justify-between items-start">
               <div className="flex-1">
-                <h3 className="text-3xl font-black mb-3 tracking-tight">
+                <h3 className="text-4xl font-spartan font-black mb-3 tracking-tight uppercase">
                   <span className="bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-300 bg-clip-text text-transparent drop-shadow-lg">
-                    art
+                    ART
                   </span>
                   <span className="text-white">,</span>
                   <span className="bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 bg-clip-text text-transparent drop-shadow-lg">
-                    where
+                    WHERE
                   </span>
                   <span className="text-pink-300">?</span>
                 </h3>

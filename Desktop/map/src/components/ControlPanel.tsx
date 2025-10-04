@@ -68,19 +68,19 @@ export const ControlPanel: React.FC = () => {
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center space-x-8">
           <div className="text-center">
-            <p className="text-base text-gray-600 mb-2 font-medium">Score</p>
+            <p className="text-base text-gray-600 mb-2 font-semibold uppercase tracking-wide">Score</p>
             <motion.p
               key={score}
               initial={{ scale: 1.5, color: '#10B981' }}
-              animate={{ scale: 1, color: '#1F2937' }}
-              className="text-5xl font-black text-gray-800"
+              animate={{ scale: 1, color: '#6B1B9A' }}
+              className="text-6xl font-spartan font-black text-purple-primary"
             >
               {score}
             </motion.p>
           </div>
           <div className="text-center">
-            <p className="text-base text-gray-600 mb-2 font-medium">Round</p>
-            <p className="text-3xl font-bold text-gray-700">{round}</p>
+            <p className="text-base text-gray-600 mb-2 font-semibold uppercase tracking-wide">Round</p>
+            <p className="text-4xl font-spartan font-black text-purple-primary">{round}</p>
           </div>
         </div>
 
@@ -90,20 +90,20 @@ export const ControlPanel: React.FC = () => {
               <button
                 onClick={handleReset}
                 disabled={!createdPin.location && !currentPin.location}
-                className="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-bold text-base"
+                className="px-6 py-3 bg-gray-200 text-gray-700 rounded-2xl hover:bg-gray-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-spartan font-bold text-base uppercase"
               >
-                Reset Pins
+                Reset
               </button>
               <button
                 onClick={handleSubmit}
                 disabled={!canSubmit}
-                className={`px-8 py-3 rounded-lg font-black text-lg transition-all transform ${
+                className={`px-8 py-3 rounded-2xl font-spartan font-black text-lg uppercase transition-all transform ${
                   canSubmit
-                    ? 'bg-gradient-to-r from-primary to-indigo-600 text-white hover:scale-105 hover:shadow-lg'
+                    ? 'bg-gradient-to-r from-purple-primary to-purple-dark text-white hover:scale-105 hover:shadow-lg'
                     : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                 }`}
               >
-                Submit Guess
+                Submit
               </button>
             </>
           )}
@@ -111,9 +111,9 @@ export const ControlPanel: React.FC = () => {
           {gameState === 'submitted' && (
             <button
               onClick={handleNext}
-              className="px-8 py-3 bg-gradient-to-r from-secondary to-green-600 text-white rounded-lg font-black text-lg hover:scale-105 transition-transform shadow-lg"
+              className="px-8 py-3 bg-gradient-to-r from-secondary to-green-600 text-white rounded-2xl font-spartan font-black text-lg uppercase hover:scale-105 transition-transform shadow-lg"
             >
-              Next Painting →
+              Next →
             </button>
           )}
         </div>

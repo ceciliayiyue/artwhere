@@ -15,8 +15,8 @@ export const StoryPanel: React.FC = () => {
   return (
     <div className="w-full bg-white">
       <div className="bg-white rounded-none shadow-lg overflow-hidden border-t border-gray-200">
-        <div className="bg-gradient-to-r from-amber-500 to-orange-500 px-6 py-4">
-          <h3 className="text-white font-black text-2xl flex items-center">
+        <div className="bg-gradient-to-r from-purple-primary to-purple-dark px-6 py-4">
+          <h3 className="text-white font-spartan font-black text-2xl flex items-center uppercase tracking-wide">
             <svg
               className="w-6 h-6 mr-2"
               fill="none"
