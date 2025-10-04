@@ -7,6 +7,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
+        'fraunces': ['"Fraunces"', 'serif'],
+        'outfit': ['"Outfit"', 'sans-serif'],
         'spartan': ['"League Spartan"', 'sans-serif'],
         'sans': ['"DM Sans"', 'sans-serif'],
       },

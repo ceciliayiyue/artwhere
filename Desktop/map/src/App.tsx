@@ -60,27 +60,36 @@ const GameContent: React.FC = () => {
   }, [gameState, round, setPainting, setGameState]);
 
   return (
-    <div className="h-screen w-screen overflow-hidden flex flex-col bg-gray-100">
+    <div className="min-h-screen w-screen overflow-y-auto flex flex-col bg-purple-texture">
       <InstructionsPanel />
 
-      <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
-        {/* Left Side: Painting Display + Story Panel */}
-        <div className="w-full md:w-[35%] lg:w-[30%] h-auto md:h-full flex flex-col overflow-y-auto">
-          <div className="min-h-[200px] md:min-h-0 md:flex-1">
-            <PaintingDisplay />
-          </div>
-          <StoryPanel />
-        </div>
+      <div className="flex justify-center">
+        <div className="w-full md:w-[75%] flex flex-col">
+          {/* Painting and Map Row */}
+          <div className="flex flex-col md:flex-row min-h-[400px] md:min-h-[500px]">
+            {/* Left Side: Painting Display */}
+            <div className="w-full md:w-[25%] lg:w-[20%] flex flex-col">
+              <div className="min-h-[200px] md:min-h-0">
+                <PaintingDisplay />
+              </div>
+            </div>
 
-        {/* Map - Right/Bottom */}
-        <div className="flex-1 md:w-[65%] lg:w-[70%] min-h-[300px] md:h-full relative">
-          <GameMap />
+            {/* Map - Right/Bottom */}
+            <div className="flex-1 md:w-[75%] lg:w-[80%] min-h-[300px] relative">
+              <GameMap />
+            </div>
+          </div>
+
+          {/* Story Panel - Below Painting/Map */}
+          <StoryPanel />
         </div>
       </div>
 
       {/* Control Panel - Fixed Bottom */}
-      <div className="relative z-30">
-        <ControlPanel />
+      <div className="relative z-30 flex justify-center">
+        <div className="w-full md:w-[75%]">
+          <ControlPanel />
+        </div>
       </div>
     </div>
   );

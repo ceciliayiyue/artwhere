@@ -63,7 +63,7 @@ export const ControlPanel: React.FC = () => {
       initial={{ y: 20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="bg-white shadow-lg rounded-t-2xl p-3 sm:p-6"
+      className="shadow-lg rounded-t-2xl p-3 sm:p-6"
     >
       <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mb-3 sm:mb-4">
         <div className="flex items-center space-x-4 sm:space-x-8 w-full sm:w-auto justify-center sm:justify-start">
