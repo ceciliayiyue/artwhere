@@ -28,9 +28,9 @@ def get_coordinates(qid):
     return None
 
 # Example usage:
-qid = "Q10292830"  # Replace with any Q-ID
-coords = get_coordinates(qid)
-if coords:
-    print(f"Coordinates for {qid}: {coords[0]}, {coords[1]}")
-else:
-    print(f"No coordinate location found for {qid}")
+# qid = "Q10292830"  # Replace with any Q-ID
+# coords = get_coordinates(qid)
+# if coords:
+#     print(f"Coordinates for {qid}: {coords[0]}, {coords[1]}")
+# else:
+#     print(f"No coordinate location found for {qid}")
