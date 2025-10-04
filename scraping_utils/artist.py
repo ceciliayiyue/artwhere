@@ -1,25 +1,13 @@
 import requests
 import constants 
 import location
+import wikidata_utils
 
 properties = {
     "place of birth": "P19",
 }
 
 BASE_URL = "https://www.wikidata.org/w/api.php"
-
-def get_entity_label(qid, language="en"):
-    params = {
-        "action": "wbgetentities",
-        "ids": qid,
-        "format": "json",
-        "props": "labels"
-    }
-    resp = requests.get(BASE_URL, params=params, headers=constants.HEADERS).json()
-    ent = resp.get("entities", {}).get(qid, {})
-    # fall back to 'mul' if the requested language doesn't exist
-    return ent.get("labels", {}).get(language, {}).get("value") or \
-           ent.get("labels", {}).get("mul", {}).get("value", "")
 
 def get_person_information(qid):
     """
@@ -47,7 +35,7 @@ def get_person_information(qid):
     if not name_obj:
         return None
 
-    person_info["name"] = get_entity_label(qid)
+    person_info["name"] = wikidata_utils.get_entity_label(qid)
 
     # Property for place of birth
     location_obj = claims.get(properties["place of birth"], [])
