@@ -1,3 +1,6 @@
+export { Header } from './Header';
+export { GameIntro } from './GameIntro';
+export { FloatingControlPanel } from './FloatingControlPanel';
 export { PaintingDisplay } from './PaintingDisplay';
 export { GameMap } from './GameMap';
 export { InstructionsPanel } from './InstructionsPanel';

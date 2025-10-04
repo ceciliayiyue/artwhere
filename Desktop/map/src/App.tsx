@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
 import { GameProvider, useGame } from './contexts/GameContext';
+import { Header } from './components/Header';
+import { GameIntro } from './components/GameIntro';
+import { FloatingControlPanel } from './components/FloatingControlPanel';
 import { PaintingDisplay } from './components/PaintingDisplay';
 import { GameMap } from './components/GameMap';
 import { InstructionsPanel } from './components/InstructionsPanel';
@@ -65,9 +68,22 @@ const GameContent: React.FC = () => {
 
       <div className="flex justify-center">
         <div className="w-full md:w-[75%] flex flex-col">
-          {/* Logo */}
-          <div className="flex justify-center mt-8 sm:mt-12 mb-8 sm:mb-12">
-            <img src="/src/assets/logo.png" alt="ART, WHERE?" className="h-20 sm:h-32 w-auto" />
+          {/* Header with Logo centered and GameIntro on the right */}
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex-1"></div>
+            <div className="flex-1 flex justify-center">
+              <Header />
+            </div>
+            <div className="flex-1 flex justify-end">
+              <GameIntro />
+            </div>
+          </div>
+
+          {/* Intro text underneath logo */}
+          <div className="flex justify-center mb-6">
+            <p className="text-lg font-medium text-center" style={{ color: '#FFFFEB' }}>
+              Discover where art was born and where it lives today! 🎨
+            </p>
           </div>
 
           {/* Painting and Map Row */}
@@ -79,9 +95,10 @@ const GameContent: React.FC = () => {
               </div>
             </div>
 
-            {/* Map - Right/Bottom */}
+            {/* Map - Right/Bottom with Floating Control Panel */}
             <div className="flex-1 md:w-[75%] lg:w-[80%] min-h-[300px] relative">
               <GameMap />
+              <FloatingControlPanel />
             </div>
           </div>
 
@@ -90,12 +107,6 @@ const GameContent: React.FC = () => {
         </div>
       </div>
 
-      {/* Control Panel - Fixed Bottom */}
-      <div className="relative z-30 flex justify-center">
-        <div className="w-full md:w-[75%]">
-          <ControlPanel />
-        </div>
-      </div>
     </div>
   );
 };
