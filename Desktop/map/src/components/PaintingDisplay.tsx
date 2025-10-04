@@ -7,7 +7,7 @@ export const PaintingDisplay: React.FC = () => {
 
   if (gameState === 'loading') {
     return (
-      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
+      <div className="w-full h-full flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-primary mx-auto mb-4"></div>
           <p className="text-gray-600 text-lg">Loading painting...</p>
@@ -18,7 +18,7 @@ export const PaintingDisplay: React.FC = () => {
 
   if (!painting) {
     return (
-      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
+      <div className="w-full h-full flex items-center justify-center">
         <p className="text-gray-600 text-lg">No painting loaded</p>
       </div>
     );
@@ -29,7 +29,7 @@ export const PaintingDisplay: React.FC = () => {
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-      className="w-full h-full flex items-center justify-center p-4 bg-gradient-to-br from-gray-50 to-gray-100"
+      className="w-full h-full flex items-center justify-center p-4"
     >
       <img
         src={painting.imageUrl}

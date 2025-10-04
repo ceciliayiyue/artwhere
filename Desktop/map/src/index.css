@@ -70,3 +70,29 @@ button, .control-element {
   -moz-user-select: none;
   -ms-user-select: none;
 }
+
+/* Transparent textured purple background */
+.bg-purple-texture {
+  background-color: #E2D4ED;
+  position: relative;
+}
+
+.bg-purple-texture::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 40% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-purple-texture > * {
+  position: relative;
+  z-index: 1;
+}
