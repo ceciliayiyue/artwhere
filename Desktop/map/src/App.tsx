@@ -65,6 +65,11 @@ const GameContent: React.FC = () => {
 
       <div className="flex justify-center">
         <div className="w-full md:w-[75%] flex flex-col">
+          {/* Logo */}
+          <div className="flex justify-center mt-8 sm:mt-12 mb-8 sm:mb-12">
+            <img src="/src/assets/logo.png" alt="ART, WHERE?" className="h-20 sm:h-32 w-auto" />
+          </div>
+
           {/* Painting and Map Row */}
           <div className="flex flex-col md:flex-row min-h-[400px] md:min-h-[500px]">
             {/* Left Side: Painting Display */}

@@ -21,7 +21,7 @@ export const StoryPanel: React.FC = () => {
     <div className="w-full mb-4">
       <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
         <div className="bg-gradient-to-r from-purple-primary to-purple-dark px-3 py-2 sm:px-6 sm:py-4">
-          <h3 className="text-white font-spartan font-black text-lg sm:text-2xl flex items-center uppercase tracking-wide">
+          <h3 className="text-white font-druk font-black text-lg sm:text-2xl flex items-center uppercase tracking-wide">
             <svg
               className="w-4 h-4 sm:w-6 sm:h-6 mr-2"
               fill="none"
@@ -62,7 +62,7 @@ export const StoryPanel: React.FC = () => {
 
             <div className="flex-1">
               <div className="prose prose-sm sm:prose-base max-w-none">
-                <p className="text-gray-700 text-sm sm:text-lg leading-relaxed font-medium">
+                <p className="text-gray-700 text-sm sm:text-lg leading-relaxed font-medium font-druk">
                   {painting?.story || (
                     <span className="italic text-gray-500">
                       [This is a placeholder for the painting's story. The story will explain
@@ -77,7 +77,7 @@ export const StoryPanel: React.FC = () => {
 
               {!result?.createdCorrect && painting?.createdLocation.name && (
                 <div className="mt-3 sm:mt-4 p-2 sm:p-4 bg-blue-50 border-l-4 border-blue-500 rounded">
-                  <p className="text-xs sm:text-base text-blue-800 font-semibold">
+                  <p className="text-xs sm:text-base text-blue-800 font-semibold font-druk">
                     <strong className="text-sm sm:text-lg">Created in:</strong> {painting.createdLocation.name}
                   </p>
                 </div>
@@ -85,7 +85,7 @@ export const StoryPanel: React.FC = () => {
 
               {!result?.currentCorrect && painting?.currentLocation.name && (
                 <div className="mt-2 sm:mt-3 p-2 sm:p-4 bg-red-50 border-l-4 border-red-500 rounded">
-                  <p className="text-xs sm:text-base text-red-800 font-semibold">
+                  <p className="text-xs sm:text-base text-red-800 font-semibold font-druk">
                     <strong className="text-sm sm:text-lg">Currently located in:</strong> {painting.currentLocation.name}
                   </p>
                 </div>

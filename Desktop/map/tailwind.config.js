@@ -7,6 +7,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
+        'druk': ['"Anton"', 'sans-serif'],
+        'eurostile': ['"Rajdhani"', 'sans-serif'],
         'fraunces': ['"Fraunces"', 'serif'],
         'outfit': ['"Outfit"', 'sans-serif'],
         'spartan': ['"League Spartan"', 'sans-serif'],
