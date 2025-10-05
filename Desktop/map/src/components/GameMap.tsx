@@ -59,7 +59,7 @@ export const GameMap: React.FC = () => {
   const resultLinesRef = useRef<L.Polyline[]>([]);
   const correctMarkersRef = useRef<L.Marker[]>([]);
   const provenanceLineRef = useRef<L.Polyline | null>(null);
-  const boatMarkerRef = useRef<L.Marker | null>(null);
+  const animatedProvenanceRef = useRef<L.Polyline | null>(null);
   const animationFrameRef = useRef<number | null>(null);
 
   const {
@@ -254,94 +254,10 @@ export const GameMap: React.FC = () => {
   useEffect(() => {
     if (!mapRef.current || !painting || gameState !== 'submitted') return;
 
-    // Clear existing boat if any
-    if (boatMarkerRef.current) {
-      mapRef.current.removeLayer(boatMarkerRef.current);
-      boatMarkerRef.current = null;
-    }
-    if (animationFrameRef.current) {
-      cancelAnimationFrame(animationFrameRef.current);
-      animationFrameRef.current = null;
-    }
-
-    // Create boat icon with painting thumbnail
-    const boatIcon = L.divIcon({
-      className: 'boat-marker',
-      html: `
-        <div style="display: flex; align-items: center; gap: 8px; transform: translateX(-50%) translateY(-100%);">
-          <div style="font-size: 40px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));">⛵</div>
-          <div style="width: 50px; height: 50px; border: 3px solid white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.3); background: white;">
-            <img src="${painting.imageUrl || ''}" style="width: 100%; height: 100%; object-fit: cover;" />
-          </div>
-        </div>
-      `,
-      iconSize: [100, 60],
-      iconAnchor: [50, 60],
-    });
-
-    // Start: first round's true location (if present)
-    const startRound = painting.rounds[0];
-    const endRound = painting.rounds[currentRoundIndex] || painting.rounds[0];
-    const startLat = startRound?.location.lat ?? 0;
-    const startLng = startRound?.location.lng ?? 0;
-    const endLat = endRound?.location.lat ?? startLat;
-    const endLng = endRound?.location.lng ?? startLng;
-
-    // Calculate bounds to zoom in on the journey
-    const bounds = L.latLngBounds(
-      [Math.min(startLat, endLat), Math.min(startLng, endLng)],
-      [Math.max(startLat, endLat), Math.max(startLng, endLng)]
-    );
-    
-    // Add padding to the bounds for better view
-    const paddedBounds = bounds.pad(5);
-    
-    // Zoom to fit the journey path
-    mapRef.current.fitBounds(paddedBounds, { 
-      padding: [20, 20],
-      maxZoom: 5 // Limit max zoom to keep it reasonable
-    });
-
-    // Create marker at start position
-    const boatMarker = L.marker([startLat, startLng], { icon: boatIcon }).addTo(mapRef.current);
-    boatMarkerRef.current = boatMarker;
-
-    // Animate the boat
-    const duration = 4000; // 4 seconds
-    const startTime = Date.now();
-
-    const animate = () => {
-      const elapsed = Date.now() - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-
-      // Easing function for smooth animation
-      const easeProgress = progress < 0.5
-        ? 2 * progress * progress
-        : 1 - Math.pow(-2 * progress + 2, 2) / 2;
-
-      // Calculate current position
-      const currentLat = startLat + (endLat - startLat) * easeProgress;
-      const currentLng = startLng + (endLng - startLng) * easeProgress;
-
-      // Update marker position
-      if (boatMarkerRef.current) {
-        boatMarkerRef.current.setLatLng([currentLat, currentLng]);
-      }
-
-      // Continue animation if not finished
-      if (progress < 1) {
-        animationFrameRef.current = requestAnimationFrame(animate);
-      }
-    };
-
-    animate();
-
-    return () => {
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
-    };
-  }, [gameState, painting]);
+    // We no longer animate a ship. The animated provenance reveal is handled
+    // in the provenance drawing effect above.
+    return;
+  }, [gameState, painting, guessPin, currentRoundIndex]);
 
   // Clear all markers and lines when transitioning to next painting
   useEffect(() => {
@@ -357,10 +273,14 @@ export const GameMap: React.FC = () => {
         guessMarkerRef.current = null;
       }
 
-      // Clear boat marker
-      if (boatMarkerRef.current) {
-        mapRef.current.removeLayer(boatMarkerRef.current);
-        boatMarkerRef.current = null;
+      // Clear any animated provenance and cancel animations
+      if (animatedProvenanceRef.current) {
+        mapRef.current.removeLayer(animatedProvenanceRef.current);
+        animatedProvenanceRef.current = null;
+      }
+      if (provenanceLineRef.current) {
+        mapRef.current.removeLayer(provenanceLineRef.current);
+        provenanceLineRef.current = null;
       }
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);

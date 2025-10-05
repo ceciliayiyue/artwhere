@@ -65,9 +65,6 @@ export const StoryPanel: React.FC = () => {
           <h3 className="text-xl font-bold text-gray-800">
             {wikiTitle || painting?.title}
           </h3>
-          <p className="text-sm text-gray-600 mt-1">
-            Artist: {painting?.artist}
-          </p>
         </div>
 
         <div className="space-y-2 text-gray-700 text-xs leading-relaxed">
