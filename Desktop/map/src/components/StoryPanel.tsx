@@ -10,7 +10,12 @@ export const StoryPanel: React.FC = () => {
   const shouldShow = gameState === 'submitted' && result && !result.correct;
 
   // Prefer round-specific wikiLink, fallback to painting.wikiLink
-  const roundWikiLink = painting?.rounds?.[currentRoundIndex]?.wikiLink || painting?.wikiLink;
+  let roundWikiLink = painting?.rounds?.[currentRoundIndex]?.wikiLink || painting?.wikiLink;
+
+  // Filter out Wikidata URLs so they never appear in the front end
+  if (roundWikiLink?.includes('wikidata.org')) {
+    roundWikiLink = undefined;
+  }
 
   useEffect(() => {
     const fetchWiki = async () => {
@@ -84,10 +89,9 @@ export const StoryPanel: React.FC = () => {
 
           {painting && (
             <div className="mt-3 sm:mt-4 p-2 sm:p-4 bg-blue-50 border-l-4 border-blue-500 rounded">
-              <p className="text-xs sm:text-base text-blue-800 font-semibold font-druk">
-                <strong className="text-sm sm:text-lg">Answer — {painting.rounds[currentRoundIndex].description}:</strong>{' '}
-                {painting.rounds[currentRoundIndex].location.name}
-              </p>
+              <div className="text-xs sm:text-base text-blue-800 font-druk whitespace-pre-line">
+                <span className="font-bold">{painting.rounds[currentRoundIndex].description}</span>{'\n'}Answer: {painting.rounds[currentRoundIndex].location.name}
+              </div>
             </div>
           )}
         </div>
