@@ -54,26 +54,26 @@ const createPinIcon = (color: string, label: string) => {
 export const GameMap: React.FC = () => {
   const mapRef = useRef<L.Map | null>(null);
   const mapContainerRef = useRef<HTMLDivElement>(null);
-  const createdMarkerRef = useRef<L.Marker | null>(null);
-  const currentMarkerRef = useRef<L.Marker | null>(null);
+  const guessMarkerRef = useRef<L.Marker | null>(null);
   const resultLinesRef = useRef<L.Polyline[]>([]);
   const correctMarkersRef = useRef<L.Marker[]>([]);
   const boatMarkerRef = useRef<L.Marker | null>(null);
   const animationFrameRef = useRef<number | null>(null);
 
   const {
-    createdPin,
-    currentPin,
-    setCreatedPin,
-    setCurrentPin,
+    guessPin,
+    setGuessPin,
     gameState,
     painting,
-    result
+    result,
+    currentRoundIndex,
   } = useGame();
 
   // Initialize map
   useEffect(() => {
     if (!mapContainerRef.current || mapRef.current) return;
+
+  // Let CSS / flexbox control container sizing (App sets full-viewport layout)
 
     const map = L.map(mapContainerRef.current, {
       center: [20, 0],
@@ -82,6 +82,16 @@ export const GameMap: React.FC = () => {
       maxZoom: 18,
       zoomControl: true,
     });
+
+    // Constrain map panning to the world bounds so the map stays within screen
+    try {
+      const worldBounds = L.latLngBounds([-90, -180], [90, 180]);
+      map.setMaxBounds(worldBounds);
+      // how strictly to enforce maxBounds when panning
+      (map.options as any).maxBoundsViscosity = 0.5;
+    } catch (e) {
+      // ignore if setMaxBounds isn't available for some reason
+    }
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -114,17 +124,9 @@ export const GameMap: React.FC = () => {
     if (!mapRef.current || gameState !== 'playing') return;
 
     const handleMapClick = (e: L.LeafletMouseEvent) => {
-      const location: Location = {
-        lat: e.latlng.lat,
-        lng: e.latlng.lng,
-      };
-
-      // Place created pin first, then current pin
-      if (!createdPin.location) {
-        setCreatedPin(location);
-      } else if (!currentPin.location) {
-        setCurrentPin(location);
-      }
+      const location: Location = { lat: e.latlng.lat, lng: e.latlng.lng };
+      // Single guess pin for current round
+      setGuessPin(location);
     };
 
     mapRef.current.on('click', handleMapClick);
@@ -132,131 +134,70 @@ export const GameMap: React.FC = () => {
     return () => {
       mapRef.current?.off('click', handleMapClick);
     };
-  }, [gameState, createdPin.location, currentPin.location, setCreatedPin, setCurrentPin]);
+  }, [gameState, setGuessPin]);
 
-  // Update created pin marker
+  // Update guess pin marker
   useEffect(() => {
     if (!mapRef.current) return;
 
-    if (createdMarkerRef.current) {
-      mapRef.current.removeLayer(createdMarkerRef.current);
-      createdMarkerRef.current = null;
+    if (guessMarkerRef.current) {
+      mapRef.current.removeLayer(guessMarkerRef.current);
+      guessMarkerRef.current = null;
     }
 
-    if (createdPin.location) {
-      // If submitted and correct, show green; otherwise brown
-      const isCorrect = gameState === 'submitted' && result?.createdCorrect;
+    if (guessPin.location) {
+      const isCorrect = gameState === 'submitted' && result?.correct;
       const pinColor = isCorrect ? 'green' : 'lightBrown';
-      const pinLabel = isCorrect ? '✓ Correct!' : 'Where created?';
+      const roundLabel = painting ? painting.rounds[currentRoundIndex]?.description || 'Guess' : 'Guess';
+      const pinLabel = isCorrect ? '✓ Correct!' : `Guess: ${roundLabel}`;
 
-      const marker = L.marker(
-        [createdPin.location.lat, createdPin.location.lng],
-        {
-          icon: createPinIcon(pinColor, pinLabel),
-          draggable: gameState === 'playing',
-        }
-      ).addTo(mapRef.current);
+      const marker = L.marker([guessPin.location.lat, guessPin.location.lng], {
+        icon: createPinIcon(pinColor, pinLabel),
+        draggable: gameState === 'playing',
+      }).addTo(mapRef.current);
 
       marker.on('dragend', (e) => {
         const newPos = e.target.getLatLng();
-        setCreatedPin({ lat: newPos.lat, lng: newPos.lng });
+        setGuessPin({ lat: newPos.lat, lng: newPos.lng });
       });
 
-      createdMarkerRef.current = marker;
+      guessMarkerRef.current = marker;
     }
-  }, [createdPin.location, gameState, result, setCreatedPin]);
+  }, [guessPin.location, gameState, result, setGuessPin, painting, currentRoundIndex]);
 
-  // Update current pin marker
-  useEffect(() => {
-    if (!mapRef.current) return;
-
-    if (currentMarkerRef.current) {
-      mapRef.current.removeLayer(currentMarkerRef.current);
-      currentMarkerRef.current = null;
-    }
-
-    if (currentPin.location) {
-      // If submitted and correct, show green; otherwise brown
-      const isCorrect = gameState === 'submitted' && result?.currentCorrect;
-      const pinColor = isCorrect ? 'green' : 'darkBrown';
-      const pinLabel = isCorrect ? '✓ Correct!' : 'Where now?';
-
-      const marker = L.marker(
-        [currentPin.location.lat, currentPin.location.lng],
-        {
-          icon: createPinIcon(pinColor, pinLabel),
-          draggable: gameState === 'playing',
-        }
-      ).addTo(mapRef.current);
-
-      marker.on('dragend', (e) => {
-        const newPos = e.target.getLatLng();
-        setCurrentPin({ lat: newPos.lat, lng: newPos.lng });
-      });
-
-      currentMarkerRef.current = marker;
-    }
-  }, [currentPin.location, gameState, result, setCurrentPin]);
+  // (no separate current pin marker - single guess pin handled above)
 
   // Show journey lines after submission
   useEffect(() => {
     if (!mapRef.current || !painting || gameState !== 'submitted' || !result) return;
 
     // Clear old lines and markers
-    resultLinesRef.current.forEach(line => mapRef.current?.removeLayer(line));
+    resultLinesRef.current.forEach((line) => mapRef.current?.removeLayer(line));
     resultLinesRef.current = [];
-    correctMarkersRef.current.forEach(marker => mapRef.current?.removeLayer(marker));
+    correctMarkersRef.current.forEach((marker) => mapRef.current?.removeLayer(marker));
     correctMarkersRef.current = [];
 
-    // Draw USER'S imagined journey (BROWN line from created guess to current guess)
-    if (createdPin.location && currentPin.location) {
-      const userJourneyLine = L.polyline(
-        [
-          [createdPin.location.lat, createdPin.location.lng],
-          [currentPin.location.lat, currentPin.location.lng],
-        ],
-        {
-          color: '#8B6F47', // Brown - user's imagined path
-          weight: 3,
-          opacity: 0.7,
-          dashArray: '5, 10',
+    // Draw line from user's guess to the true location for the current sub-round
+    if (guessPin.location) {
+      const trueLoc = painting.rounds[currentRoundIndex]?.location;
+      if (trueLoc) {
+        const userToTrue = L.polyline(
+          [
+            [guessPin.location.lat, guessPin.location.lng],
+            [trueLoc.lat, trueLoc.lng],
+          ],
+          { color: '#8B6F47', weight: 3, opacity: 0.8, dashArray: '5,6' }
+        ).addTo(mapRef.current!);
+        resultLinesRef.current.push(userToTrue);
+
+        // If guess was incorrect, show the true location marker
+        if (!result.correct) {
+          const correctMarker = L.marker([trueLoc.lat, trueLoc.lng], { icon: createPinIcon('green', '✓ Answer') }).addTo(mapRef.current!);
+          correctMarkersRef.current.push(correctMarker);
         }
-      ).addTo(mapRef.current);
-      resultLinesRef.current.push(userJourneyLine);
-    }
-
-    // Draw ACTUAL painting journey (GREEN line from created to current location)
-    const actualJourneyLine = L.polyline(
-      [
-        [painting.createdLocation.lat, painting.createdLocation.lng],
-        [painting.currentLocation.lat, painting.currentLocation.lng],
-      ],
-      {
-        color: '#10B981', // Green - actual path
-        weight: 3,
-        opacity: 0.7,
-        dashArray: '5, 10',
       }
-    ).addTo(mapRef.current);
-    resultLinesRef.current.push(actualJourneyLine);
-
-    // Add correct location markers only if user was wrong
-    if (!result.createdCorrect) {
-      const correctCreatedMarker = L.marker(
-        [painting.createdLocation.lat, painting.createdLocation.lng],
-        { icon: createPinIcon('green', 'Created here') }
-      ).addTo(mapRef.current);
-      correctMarkersRef.current.push(correctCreatedMarker);
     }
-
-    if (!result.currentCorrect) {
-      const correctCurrentMarker = L.marker(
-        [painting.currentLocation.lat, painting.currentLocation.lng],
-        { icon: createPinIcon('green', 'Located here') }
-      ).addTo(mapRef.current);
-      correctMarkersRef.current.push(correctCurrentMarker);
-    }
-  }, [gameState, result, painting, createdPin.location, currentPin.location]);
+  }, [gameState, result, painting, guessPin.location, currentRoundIndex]);
 
   // Animate boat with painting miniature along journey path
   useEffect(() => {
@@ -279,7 +220,7 @@ export const GameMap: React.FC = () => {
         <div style="display: flex; align-items: center; gap: 8px; transform: translateX(-50%) translateY(-100%);">
           <div style="font-size: 40px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));">⛵</div>
           <div style="width: 50px; height: 50px; border: 3px solid white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.3); background: white;">
-            <img src="${painting.imageUrl}" style="width: 100%; height: 100%; object-fit: cover;" />
+            <img src="${painting.imageUrl || ''}" style="width: 100%; height: 100%; object-fit: cover;" />
           </div>
         </div>
       `,
@@ -287,13 +228,13 @@ export const GameMap: React.FC = () => {
       iconAnchor: [50, 60],
     });
 
-    // Start position (where created)
-    const startLat = painting.createdLocation.lat;
-    const startLng = painting.createdLocation.lng;
-
-    // End position (where now)
-    const endLat = painting.currentLocation.lat;
-    const endLng = painting.currentLocation.lng;
+    // Start: first round's true location (if present)
+    const startRound = painting.rounds[0];
+    const endRound = painting.rounds[currentRoundIndex] || painting.rounds[0];
+    const startLat = startRound?.location.lat ?? 0;
+    const startLng = startRound?.location.lng ?? 0;
+    const endLat = endRound?.location.lat ?? startLat;
+    const endLng = endRound?.location.lng ?? startLng;
 
     // Calculate bounds to zoom in on the journey
     const bounds = L.latLngBounds(
@@ -376,7 +317,7 @@ export const GameMap: React.FC = () => {
 
   return (
     <div className="w-full h-full relative">
-      <div ref={mapContainerRef} className="w-full h-full z-0" />
+      <div ref={mapContainerRef} className="w-full h-full z-0 map-fill-parent" />
     </div>
   );
 };

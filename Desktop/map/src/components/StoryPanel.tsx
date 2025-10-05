@@ -1,10 +1,11 @@
 import React from 'react';
+// framer-motion not needed in this lightweight panel
 import { useGame } from '../contexts/GameContext';
 
 export const StoryPanel: React.FC = () => {
-  const { gameState, result, painting } = useGame();
+  const { gameState, result, painting, currentRoundIndex } = useGame();
 
-  const shouldShow = gameState === 'submitted' && result && (!result.createdCorrect || !result.currentCorrect);
+  const shouldShow = gameState === 'submitted' && result && !result.correct;
 
   if (!shouldShow) return null;
 
@@ -32,23 +33,15 @@ export const StoryPanel: React.FC = () => {
             )}
           </p>
 
-          {!result?.createdCorrect && painting?.createdLocation.name && (
-            <div className="mt-2 p-2 bg-blue-50 border-l-4 border-blue-500 rounded">
-              <p className="text-xs text-blue-800 font-semibold">
-                <strong>Created in:</strong> {painting.createdLocation.name}
-              </p>
+              {painting && (
+                <div className="mt-3 sm:mt-4 p-2 sm:p-4 bg-blue-50 border-l-4 border-blue-500 rounded">
+                  <p className="text-xs sm:text-base text-blue-800 font-semibold font-druk">
+                    <strong className="text-sm sm:text-lg">Answer — {painting.rounds[currentRoundIndex].description}:</strong> {painting.rounds[currentRoundIndex].location.name}
+                  </p>
+                </div>
+              )}
             </div>
-          )}
-
-          {!result?.currentCorrect && painting?.currentLocation.name && (
-            <div className="mt-2 p-2 bg-red-50 border-l-4 border-red-500 rounded">
-              <p className="text-xs text-red-800 font-semibold">
-                <strong>Currently located in:</strong> {painting.currentLocation.name}
-              </p>
-            </div>
-          )}
+          </div>
         </div>
-      </div>
-    </div>
   );
 };

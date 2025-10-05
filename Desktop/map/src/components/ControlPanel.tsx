@@ -6,8 +6,7 @@ import type { GameResult } from '../types/game';
 
 export const ControlPanel: React.FC = () => {
   const {
-    createdPin,
-    currentPin,
+    guessPin,
     gameState,
     setGameState,
     painting,
@@ -17,41 +16,47 @@ export const ControlPanel: React.FC = () => {
     round,
     setRound,
     resetPins,
+    currentRoundIndex,
+    setCurrentRoundIndex,
   } = useGame();
 
-  const canSubmit = createdPin.location && currentPin.location && gameState === 'playing';
+  const canSubmit = guessPin.location && gameState === 'playing' && !!painting;
 
   const handleSubmit = () => {
     if (!canSubmit || !painting) return;
 
-    const createdCorrect = isGuessCorrect(createdPin.location!, painting.createdLocation);
-    const currentCorrect = isGuessCorrect(currentPin.location!, painting.currentLocation);
-
-    const result: GameResult = {
-      createdCorrect,
-      currentCorrect,
-      createdDistance: !createdCorrect
-        ? calculateDistance(createdPin.location!, painting.createdLocation)
-        : undefined,
-      currentDistance: !currentCorrect
-        ? calculateDistance(currentPin.location!, painting.currentLocation)
-        : undefined,
+    const trueLocation = painting.rounds[currentRoundIndex].location;
+    const correct = isGuessCorrect(guessPin.location!, trueLocation);
+    const resultObj: GameResult = {
+      correct,
+      distance: !correct ? calculateDistance(guessPin.location!, trueLocation) : undefined,
     };
 
-    setResult(result);
+    setResult(resultObj);
     setGameState('submitted');
 
-    // Update score: 1 point for each correct guess
-    const pointsEarned = (createdCorrect ? 1 : 0) + (currentCorrect ? 1 : 0);
+    // Update score: 1 point for correct guess
+    const pointsEarned = correct ? 1 : 0;
     setScore(score + pointsEarned);
   };
 
   const handleNext = () => {
+    // advance to next sub-round or painting
     resetPins();
     setResult(null);
+    // Advance sub-round within the same painting if available
+    if (painting) {
+      const nextIndex = currentRoundIndex + 1;
+      if (nextIndex < painting.rounds.length) {
+        setCurrentRoundIndex((prev) => prev + 1);
+        setGameState('loading');
+        return;
+      }
+    }
+    // Otherwise advance to next painting
     setRound(round + 1);
+    setCurrentRoundIndex(0);
     setGameState('loading');
-    // Parent component should handle loading next painting
   };
 
   const handleReset = () => {
@@ -83,6 +88,10 @@ export const ControlPanel: React.FC = () => {
             <p className="text-xs sm:text-base mb-1 sm:mb-2 font-semibold uppercase tracking-wide font-druk" style={{ color: '#FFFFEB' }}>Round</p>
             <p className="text-3xl sm:text-4xl font-druk font-black" style={{ color: '#FFFFEB' }}>{round}</p>
           </div>
+          <div className="text-center ml-6">
+            <p className="text-xs sm:text-base mb-1 sm:mb-2 font-semibold uppercase tracking-wide font-druk" style={{ color: '#FFFFEB' }}>Stage</p>
+            <p className="text-sm sm:text-base font-druk font-black" style={{ color: '#FFFFEB' }}>{painting ? painting.rounds[currentRoundIndex].description : ''}</p>
+          </div>
         </div>
 
         <div className="flex space-x-2 sm:space-x-3">
@@ -90,7 +99,7 @@ export const ControlPanel: React.FC = () => {
             <>
               <button
                 onClick={handleReset}
-                disabled={!createdPin.location && !currentPin.location}
+                disabled={!guessPin.location}
                 className="flex-1 sm:flex-none px-4 sm:px-6 py-2 sm:py-3 rounded-2xl hover:opacity-80 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed font-druk font-bold text-sm sm:text-base uppercase"
                 style={{ backgroundColor: '#FFFFEB', color: '#5EA85E' }}
               >
@@ -125,14 +134,11 @@ export const ControlPanel: React.FC = () => {
 
       {gameState === 'playing' && (
         <div className="text-sm sm:text-base text-center font-medium font-druk" style={{ color: '#FFFFEB' }}>
-          {!createdPin.location && !currentPin.location && (
-            <p>Place both pins on the map to submit your guess</p>
+          {!guessPin.location && (
+            <p>Place a pin on the map to answer: <span className="font-bold">{painting ? painting.rounds[currentRoundIndex].description : ''}</span></p>
           )}
-          {createdPin.location && !currentPin.location && (
-            <p>Great! Now place the <span className="text-amber-600 font-bold">dark brown pin</span> for the current location</p>
-          )}
-          {createdPin.location && currentPin.location && (
-            <p className="text-green-600 font-bold text-base sm:text-lg">Ready to submit! 🎨</p>
+          {guessPin.location && (
+            <p className="text-green-600 font-bold text-base sm:text-lg">Ready to submit your guess! �</p>
           )}
         </div>
       )}

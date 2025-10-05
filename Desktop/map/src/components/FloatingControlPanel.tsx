@@ -6,8 +6,7 @@ import type { GameResult } from '../types/game';
 
 export const FloatingControlPanel: React.FC = () => {
   const {
-    createdPin,
-    currentPin,
+  guessPin,
     gameState,
     setGameState,
     painting,
@@ -17,39 +16,49 @@ export const FloatingControlPanel: React.FC = () => {
     round,
     setRound,
     resetPins,
+    currentRoundIndex,
+    setCurrentRoundIndex,
   } = useGame();
 
-  const canSubmit = createdPin.location && currentPin.location && gameState === 'playing';
+  const canSubmit = !!guessPin.location && gameState === 'playing';
 
   const handleSubmit = () => {
     if (!canSubmit || !painting) return;
 
-    const createdCorrect = isGuessCorrect(createdPin.location!, painting.createdLocation);
-    const currentCorrect = isGuessCorrect(currentPin.location!, painting.currentLocation);
+    const trueLoc = painting.rounds[currentRoundIndex]?.location;
+    if (!trueLoc || !guessPin.location) return;
+
+    const correct = isGuessCorrect(guessPin.location, trueLoc);
+    const distance = !correct ? calculateDistance(guessPin.location, trueLoc) : undefined;
 
     const result: GameResult = {
-      createdCorrect,
-      currentCorrect,
-      createdDistance: !createdCorrect
-        ? calculateDistance(createdPin.location!, painting.createdLocation)
-        : undefined,
-      currentDistance: !currentCorrect
-        ? calculateDistance(currentPin.location!, painting.currentLocation)
-        : undefined,
+      correct,
+      distance,
     };
 
     setResult(result);
     setGameState('submitted');
 
-    // Update score: 1 point for each correct guess
-    const pointsEarned = (createdCorrect ? 1 : 0) + (currentCorrect ? 1 : 0);
+    // Update score: 1 point for a correct guess
+    const pointsEarned = correct ? 1 : 0;
     setScore(score + pointsEarned);
   };
 
   const handleNext = () => {
+    // Advance to next sub-round if present, otherwise advance to next painting
     resetPins();
     setResult(null);
+    if (painting) {
+      const nextIndex = currentRoundIndex + 1;
+      if (nextIndex < painting.rounds.length) {
+        setCurrentRoundIndex((prev) => prev + 1);
+        setGameState('loading');
+        return;
+      }
+    }
+    // otherwise move to next painting
     setRound(round + 1);
+    setCurrentRoundIndex(0);
     setGameState('loading');
   };
 
@@ -88,7 +97,7 @@ export const FloatingControlPanel: React.FC = () => {
           <>
             <button
               onClick={handleReset}
-              disabled={!createdPin.location && !currentPin.location}
+              disabled={!guessPin.location}
               className="px-3 py-2 rounded-xl hover:opacity-80 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed font-druk font-bold text-xs uppercase bg-white/20 text-white"
             >
               Reset
@@ -119,13 +128,10 @@ export const FloatingControlPanel: React.FC = () => {
 
       {gameState === 'playing' && (
         <div className="text-xs text-center font-medium font-druk text-white/90 mt-6">
-          {!createdPin.location && !currentPin.location && (
-            <p>Place both pins on the map</p>
+          {!guessPin.location && (
+            <p>Place a pin on the map for this round</p>
           )}
-          {createdPin.location && !currentPin.location && (
-            <p>Now place the <span className="text-amber-300 font-bold">dark pin</span> for current location</p>
-          )}
-          {createdPin.location && currentPin.location && (
+          {guessPin.location && (
             <p className="text-green-300 font-bold">Ready to submit! 🎨</p>
           )}
         </div>
