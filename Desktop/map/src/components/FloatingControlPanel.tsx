@@ -64,9 +64,9 @@ export const FloatingControlPanel: React.FC = () => {
       transition={{ duration: 0.5 }}
       className="absolute top-4 right-4 z-20 bg-green-600 rounded-2xl p-4 shadow-xl"
     >
-      <div className="flex items-center space-x-4 mb-3">
-        <div className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-wide font-druk text-white/80">Score</p>
+      <div className="flex items-center justify-between mb-3 px-2">
+        <div className="text-center flex-1">
+          <p className="text-xs font-semibold uppercase tracking-wide font-druk text-white/80 mb-1">Score</p>
           <motion.p
             key={score}
             initial={{ scale: 1.2, color: '#10B981' }}
@@ -76,9 +76,10 @@ export const FloatingControlPanel: React.FC = () => {
             {score}
           </motion.p>
         </div>
-        <div className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-wide font-druk text-white/80">Round</p>
-          <p className="text-xl font-druk font-black text-white">{round}</p>
+        <div className="w-px h-8 bg-white/30 mx-2"></div>
+        <div className="text-center flex-1">
+          <p className="text-xs font-semibold uppercase tracking-wide font-druk text-white/80 mb-1">Round</p>
+          <p className="text-2xl font-druk font-black text-white">{round}</p>
         </div>
       </div>
 
@@ -117,7 +118,7 @@ export const FloatingControlPanel: React.FC = () => {
       </div>
 
       {gameState === 'playing' && (
-        <div className="text-xs text-center font-medium font-druk text-white/90 mt-2">
+        <div className="text-xs text-center font-medium font-druk text-white/90 mt-6">
           {!createdPin.location && !currentPin.location && (
             <p>Place both pins on the map</p>
           )}

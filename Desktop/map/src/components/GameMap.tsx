@@ -89,7 +89,21 @@ export const GameMap: React.FC = () => {
 
     mapRef.current = map;
 
+    // Add resize observer to handle map visibility changes
+    const resizeObserver = new ResizeObserver(() => {
+      if (mapRef.current) {
+        setTimeout(() => {
+          mapRef.current?.invalidateSize();
+        }, 100);
+      }
+    });
+
+    if (mapContainerRef.current) {
+      resizeObserver.observe(mapContainerRef.current);
+    }
+
     return () => {
+      resizeObserver.disconnect();
       map.remove();
       mapRef.current = null;
     };
@@ -230,7 +244,7 @@ export const GameMap: React.FC = () => {
     if (!result.createdCorrect) {
       const correctCreatedMarker = L.marker(
         [painting.createdLocation.lat, painting.createdLocation.lng],
-        { icon: createPinIcon('green', '✓ Created here') }
+        { icon: createPinIcon('green', 'Created here') }
       ).addTo(mapRef.current);
       correctMarkersRef.current.push(correctCreatedMarker);
     }
@@ -238,7 +252,7 @@ export const GameMap: React.FC = () => {
     if (!result.currentCorrect) {
       const correctCurrentMarker = L.marker(
         [painting.currentLocation.lat, painting.currentLocation.lng],
-        { icon: createPinIcon('green', '✓ Located here') }
+        { icon: createPinIcon('green', 'Located here') }
       ).addTo(mapRef.current);
       correctMarkersRef.current.push(correctCurrentMarker);
     }

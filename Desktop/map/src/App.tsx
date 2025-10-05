@@ -74,17 +74,17 @@ const GameContent: React.FC = () => {
             <div className="flex-1 flex justify-center">
               <Header />
             </div>
-            <div className="flex-1 flex justify-end">
+            <div className="flex-1 flex justify-end mt-2">
               <GameIntro />
             </div>
           </div>
 
           {/* Intro text underneath logo */}
           <div className="flex justify-center -mt-4 mb-4">
-            <p className="text-lg font-medium text-center italic" style={{ 
+            <p className="text-lg font-bold text-center italic" style={{ 
               color: '#FFFFEB', 
               fontFamily: 'Georgia, serif',
-              fontWeight: 'normal',
+              fontWeight: 'bold',
               textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
               letterSpacing: '0.5px'
             }}>

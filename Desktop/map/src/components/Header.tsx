@@ -7,7 +7,7 @@ export const Header: React.FC = () => {
       <img 
         src={logoImage} 
         alt="ART, WHERE?" 
-        className="h-40 sm:h-64 w-auto drop-shadow-lg hover:scale-105 transition-transform duration-300" 
+        className="h-48 sm:h-80 w-auto drop-shadow-lg hover:scale-105 transition-transform duration-300" 
       />
     </div>
   );
