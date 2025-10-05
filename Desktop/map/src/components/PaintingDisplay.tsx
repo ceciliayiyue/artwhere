@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useGame } from '../contexts/GameContext';
 
-export const PaintingDisplay: React.FC = () => {
+export const PaintingDisplay: React.FC<{ compact?: boolean }> = ({ compact = false }) => {
   const { painting, gameState } = useGame();
 
   if (gameState === 'loading') {
@@ -21,6 +21,19 @@ export const PaintingDisplay: React.FC = () => {
       <div className="w-full h-full flex items-center justify-center">
         <p className="text-gray-600 text-lg">No painting loaded</p>
       </div>
+    );
+  }
+
+  // Compact overlay widget
+  if (compact) {
+    return (
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }} className="portrait-widget">
+        <img src={painting.imageUrl} alt={painting.title} onError={(e) => { (e.target as HTMLImageElement).src = 'https://via.placeholder.com/300x200?text=Painting'; }} />
+        <div className="meta">
+          <div className="font-semibold">{painting.title}</div>
+          <div className="text-xs">{painting.artist}</div>
+        </div>
+      </motion.div>
     );
   }
 
