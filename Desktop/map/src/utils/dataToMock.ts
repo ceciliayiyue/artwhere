@@ -53,11 +53,25 @@ export function generateMockPaintingsFromData(raw: RawData): Painting[] {
   const paintings: Painting[] = (items || []).map((item: any, idx: number) => {
     const id = (item.wikibase_article && item.wikibase_article.id) || `SAMPLE_${idx}`;
     const title = (item.wikibase_article && item.wikibase_article.title) || `Untitled ${idx}`;
-    const artist = (item.creator && item.creator.name) || 'Unknown Artist';
-  const imageUrl = pickImage(item) || undefined;
+    const artist =
+      (Array.isArray(item.creator) && item.creator.length && item.creator[0].name) ||
+      (item.creator && item.creator.name) ||
+      'Unknown Artist';
+    const imageUrl = pickImage(item) || undefined;
 
     // Round A: Artist birthplace
-    const artistBirth = safeGetCoordinates(item.creator && item.creator.place_of_birth);
+    let artistBirth: Location | null = null;
+    if (Array.isArray(item.creator)) {
+      for (const c of item.creator) {
+        const coords = safeGetCoordinates(c.place_of_birth);
+        if (coords) {
+          artistBirth = coords;
+          break;
+        }
+      }
+    } else if (item.creator) {
+      artistBirth = safeGetCoordinates(item.creator.place_of_birth);
+    }
 
     // Round B: Location of creation (prefer explicit location_of_creation, fallback to country_of_origin)
     let creationLoc: Location | null = null;
@@ -127,6 +141,12 @@ export function generateMockPaintingsFromData(raw: RawData): Painting[] {
         : item.significant_event.name || ''
       : '';
 
+    // Use Wikipedia link first, fallback to Wikidata
+    const wikiLink =
+      (item.wikibase_article && item.wikibase_article.wikipedia_url) ||
+      (item.wikibase_article && item.wikibase_article.wiki_url) ||
+      undefined;
+
     const painting: Painting = {
       id,
       title,
@@ -135,6 +155,7 @@ export function generateMockPaintingsFromData(raw: RawData): Painting[] {
       rounds,
       story,
       storyImageUrl: imageUrl,
+      wikiLink: wikiLink,
     };
 
     return painting;

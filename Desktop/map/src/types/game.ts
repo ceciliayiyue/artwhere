@@ -16,6 +16,7 @@ export interface Painting {
   title: string;
   artist: string;
   imageUrl?: string;
+  wikiLink?: string;
   // A list of rounds to play for this painting. Each round has its own description and true location.
   rounds: RoundData[];
   story?: string;
