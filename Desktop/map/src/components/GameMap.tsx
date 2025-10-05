@@ -58,6 +58,7 @@ export const GameMap: React.FC = () => {
   const guessMarkerRef = useRef<L.Marker | null>(null);
   const resultLinesRef = useRef<L.Polyline[]>([]);
   const correctMarkersRef = useRef<L.Marker[]>([]);
+  const provenanceLineRef = useRef<L.Polyline | null>(null);
   const boatMarkerRef = useRef<L.Marker | null>(null);
   const animationFrameRef = useRef<number | null>(null);
 
@@ -80,7 +81,7 @@ export const GameMap: React.FC = () => {
       center: [20, 0],
       zoom: 2,
       minZoom: 2,
-      maxZoom: 18,
+      maxZoom: 8,
       zoomControl: true,
     });
 
@@ -166,17 +167,61 @@ export const GameMap: React.FC = () => {
     }
   }, [guessPin.location, gameState, result, setGuessPin, painting, currentRoundIndex]);
 
-  // (no separate current pin marker - single guess pin handled above)
 
-  // Show journey lines after submission
+  // Handle provenance visualization (journey line)
+  useEffect(() => {
+    if (!mapRef.current || !painting) return;
+    console.log('Provenance effect running', { currentRoundIndex, gameState });
+
+    // Clear previous provenance line and markers only when round changes
+    if (provenanceLineRef.current) {
+      mapRef.current.removeLayer(provenanceLineRef.current);
+      provenanceLineRef.current = null;
+    }
+
+    // Draw the journey line
+    const provenanceLocations = painting.rounds.slice(0, currentRoundIndex).map(round => round.location);
+    
+    if (provenanceLocations.length >= 2) {
+      const line = L.polyline(
+        provenanceLocations.map(loc => [loc.lat, loc.lng]),
+        { 
+          color: '#FF4B4B', // Red color for provenance
+          weight: 3,
+          opacity: 0.8,
+          dashArray: '10,10',
+        }
+      ).addTo(mapRef.current);
+      
+      provenanceLineRef.current = line;
+
+      // Add markers for previous locations only
+      // provenanceLocations.slice(0, -1).forEach((loc, index) => {
+      //   const marker = L.marker([loc.lat, loc.lng], {
+      //     icon: createPinIcon('blue', painting.rounds[index].description)
+      //   }).addTo(mapRef.current!);
+      //   correctMarkersRef.current.push(marker);
+      // });
+    }
+
+    // Cleanup function to remove lines and markers when unmounting or painting changes
+    return () => {
+      if (provenanceLineRef.current) {
+        mapRef.current?.removeLayer(provenanceLineRef.current);
+        provenanceLineRef.current = null;
+      }
+      correctMarkersRef.current.forEach(marker => mapRef.current?.removeLayer(marker));
+      correctMarkersRef.current = [];
+    };
+  }, [painting, currentRoundIndex, gameState]);
+
+  // Handle guess lines and current round visualization
   useEffect(() => {
     if (!mapRef.current || !painting || gameState !== 'submitted' || !result) return;
 
-    // Clear old lines and markers
+    // Clear only the guess lines
     resultLinesRef.current.forEach((line) => mapRef.current?.removeLayer(line));
     resultLinesRef.current = [];
-    correctMarkersRef.current.forEach((marker) => mapRef.current?.removeLayer(marker));
-    correctMarkersRef.current = [];
 
     // Draw line from user's guess to the true location for the current sub-round
     if (guessPin.location) {
@@ -198,7 +243,7 @@ export const GameMap: React.FC = () => {
         }
       }
     }
-  }, [gameState, result, painting, guessPin.location, currentRoundIndex]);
+  }, [gameState, painting, currentRoundIndex]);
 
   // Animate boat with painting miniature along journey path
   useEffect(() => {
@@ -238,19 +283,19 @@ export const GameMap: React.FC = () => {
     const endLng = endRound?.location.lng ?? startLng;
 
     // Calculate bounds to zoom in on the journey
-    const bounds = L.latLngBounds(
-      [Math.min(startLat, endLat), Math.min(startLng, endLng)],
-      [Math.max(startLat, endLat), Math.max(startLng, endLng)]
-    );
+    // const bounds = L.latLngBounds(
+    //   [Math.min(startLat, endLat), Math.min(startLng, endLng)],
+    //   [Math.max(startLat, endLat), Math.max(startLng, endLng)]
+    // );
     
-    // Add padding to the bounds for better view
-    const paddedBounds = bounds.pad(0.1);
+    // // Add padding to the bounds for better view
+    // const paddedBounds = bounds.pad(0.1);
     
-    // Zoom to fit the journey path
-    mapRef.current.fitBounds(paddedBounds, { 
-      padding: [20, 20],
-      maxZoom: 8 // Limit max zoom to keep it reasonable
-    });
+    // // Zoom to fit the journey path
+    // mapRef.current.fitBounds(paddedBounds, { 
+    //   padding: [20, 20],
+    //   maxZoom: 8 // Limit max zoom to keep it reasonable
+    // });
 
     // Create marker at start position
     const boatMarker = L.marker([startLat, startLng], { icon: boatIcon }).addTo(mapRef.current);
@@ -293,16 +338,19 @@ export const GameMap: React.FC = () => {
     };
   }, [gameState, painting]);
 
-  // Clear all result markers when transitioning to next painting
+  // Clear all markers and lines when transitioning to next painting
   useEffect(() => {
     if (gameState === 'loading' && mapRef.current) {
+      console.log('Clearing on loading state');
       // Clear result lines
       resultLinesRef.current.forEach(line => mapRef.current?.removeLayer(line));
       resultLinesRef.current = [];
 
-      // Clear correct answer markers
-      correctMarkersRef.current.forEach(marker => mapRef.current?.removeLayer(marker));
-      correctMarkersRef.current = [];
+      // Clear guess markers only
+      if (guessMarkerRef.current) {
+        mapRef.current.removeLayer(guessMarkerRef.current);
+        guessMarkerRef.current = null;
+      }
 
       // Clear boat marker
       if (boatMarkerRef.current) {
