@@ -1,21 +1,23 @@
 import React, { createContext, useContext, useState } from 'react';
 import type { ReactNode } from 'react';
+import type { Dispatch, SetStateAction } from 'react';
 import type { Painting, Pin, GameResult, GameState, Location } from '../types/game';
 
 interface GameContextType {
   painting: Painting | null;
   setPainting: (painting: Painting | null) => void;
-  createdPin: Pin;
-  currentPin: Pin;
-  setCreatedPin: (location: Location | null) => void;
-  setCurrentPin: (location: Location | null) => void;
+  guessPin: Pin;
+  setGuessPin: (location: Location | null) => void;
   gameState: GameState;
   setGameState: (state: GameState) => void;
   result: GameResult | null;
   setResult: (result: GameResult | null) => void;
   score: number;
   setScore: (score: number) => void;
-  round: number;
+  // Current painting round index (0-based) within the painting.rounds array
+  currentRoundIndex: number;
+  setCurrentRoundIndex: Dispatch<SetStateAction<number>>;
+  round: number; // overall game round counter (1-based)
   setRound: (round: number) => void;
   resetPins: () => void;
   showInstructions: boolean;
@@ -38,40 +40,35 @@ interface GameProviderProps {
 
 export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   const [painting, setPainting] = useState<Painting | null>(null);
-  const [createdPin, setCreatedPinState] = useState<Pin>({ type: 'created', location: null });
-  const [currentPin, setCurrentPinState] = useState<Pin>({ type: 'current', location: null });
+  const [guessPin, setGuessPinState] = useState<Pin>({ type: 'guess', location: null });
   const [gameState, setGameState] = useState<GameState>('loading');
   const [result, setResult] = useState<GameResult | null>(null);
   const [score, setScore] = useState(0);
   const [round, setRound] = useState(1);
+  const [currentRoundIndex, setCurrentRoundIndex] = useState(0);
   const [showInstructions, setShowInstructions] = useState(true);
 
-  const setCreatedPin = (location: Location | null) => {
-    setCreatedPinState({ type: 'created', location });
-  };
-
-  const setCurrentPin = (location: Location | null) => {
-    setCurrentPinState({ type: 'current', location });
+  const setGuessPin = (location: Location | null) => {
+    setGuessPinState({ type: 'guess', location });
   };
 
   const resetPins = () => {
-    setCreatedPin(null);
-    setCurrentPin(null);
+    setGuessPin(null);
   };
 
   const value: GameContextType = {
     painting,
     setPainting,
-    createdPin,
-    currentPin,
-    setCreatedPin,
-    setCurrentPin,
+    guessPin,
+    setGuessPin,
     gameState,
     setGameState,
     result,
     setResult,
     score,
     setScore,
+    currentRoundIndex,
+    setCurrentRoundIndex,
     round,
     setRound,
     resetPins,

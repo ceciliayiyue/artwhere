@@ -1,5 +1,5 @@
 import React from 'react';
-import logoImage from '../assets/logo.png';
+import logoImage from '../assets/logo_cropped.png';
 
 export const Header: React.FC = () => {
   return (
@@ -7,7 +7,7 @@ export const Header: React.FC = () => {
       <img 
         src={logoImage} 
         alt="ART, WHERE?" 
-        className="h-48 sm:h-80 w-auto drop-shadow-lg hover:scale-105 transition-transform duration-300" 
+        style={{ width: '20%', minWidth: '120px', height: 'auto', padding: '40px' }}
       />
     </div>
   );

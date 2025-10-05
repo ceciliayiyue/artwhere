@@ -3,6 +3,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useGame } from '../contexts/GameContext';
 import type { Location } from '../types/game';
+import { StoryPanel } from './StoryPanel';
 
 // Fix for default marker icons in Leaflet with Vite
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
@@ -32,7 +33,7 @@ const createPinIcon = (color: string, label: string) => {
     html: `
       <div style="position: relative;">
         <div style="position: absolute; top: -40px; left: 50%; transform: translateX(-50%); white-space: nowrap;">
-          <span style="background-color: ${fillColor}; color: white; padding: 6px 10px; border-radius: 6px; font-size: 15px; font-weight: 700; box-shadow: 0 4px 8px rgba(0,0,0,0.15), 0 2px 4px rgba(0,0,0,0.1); font-family: 'Outfit', sans-serif;">
+          <span style="background-color: ${fillColor}; color: white; padding: 6px 10px; border-radius: 6px; font-size: 20px; font-weight: 700; box-shadow: 0 4px 8px rgba(0,0,0,0.15), 0 2px 4px rgba(0,0,0,0.1); font-family: 'Outfit', sans-serif;">
             ${label}
           </span>
         </div>
@@ -54,21 +55,20 @@ const createPinIcon = (color: string, label: string) => {
 export const GameMap: React.FC = () => {
   const mapRef = useRef<L.Map | null>(null);
   const mapContainerRef = useRef<HTMLDivElement>(null);
-  const createdMarkerRef = useRef<L.Marker | null>(null);
-  const currentMarkerRef = useRef<L.Marker | null>(null);
+  const guessMarkerRef = useRef<L.Marker | null>(null);
   const resultLinesRef = useRef<L.Polyline[]>([]);
   const correctMarkersRef = useRef<L.Marker[]>([]);
-  const boatMarkerRef = useRef<L.Marker | null>(null);
+  const provenanceLineRef = useRef<L.Polyline | null>(null);
+  const animatedProvenanceRef = useRef<L.Polyline | null>(null);
   const animationFrameRef = useRef<number | null>(null);
 
   const {
-    createdPin,
-    currentPin,
-    setCreatedPin,
-    setCurrentPin,
+    guessPin,
+    setGuessPin,
     gameState,
     painting,
-    result
+    result,
+    currentRoundIndex,
   } = useGame();
 
   // Initialize map
@@ -77,11 +77,21 @@ export const GameMap: React.FC = () => {
 
     const map = L.map(mapContainerRef.current, {
       center: [20, 0],
-      zoom: 2,
+      zoom: 3,
       minZoom: 2,
-      maxZoom: 18,
+      maxZoom: 8,
       zoomControl: true,
     });
+
+    // Constrain map panning to the world bounds so the map stays within screen
+    try {
+      const worldBounds = L.latLngBounds([-90, -180], [90, 180]);
+      map.setMaxBounds(worldBounds);
+      // how strictly to enforce maxBounds when panning
+      (map.options as any).maxBoundsViscosity = 0.5;
+    } catch (e) {
+      // ignore if setMaxBounds isn't available for some reason
+    }
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -114,17 +124,9 @@ export const GameMap: React.FC = () => {
     if (!mapRef.current || gameState !== 'playing') return;
 
     const handleMapClick = (e: L.LeafletMouseEvent) => {
-      const location: Location = {
-        lat: e.latlng.lat,
-        lng: e.latlng.lng,
-      };
-
-      // Place created pin first, then current pin
-      if (!createdPin.location) {
-        setCreatedPin(location);
-      } else if (!currentPin.location) {
-        setCurrentPin(location);
-      }
+      const location: Location = { lat: e.latlng.lat, lng: e.latlng.lng };
+      // Single guess pin for current round
+      setGuessPin(location);
     };
 
     mapRef.current.on('click', handleMapClick);
@@ -132,240 +134,153 @@ export const GameMap: React.FC = () => {
     return () => {
       mapRef.current?.off('click', handleMapClick);
     };
-  }, [gameState, createdPin.location, currentPin.location, setCreatedPin, setCurrentPin]);
+  }, [gameState, setGuessPin]);
 
-  // Update created pin marker
+  // Update guess pin marker
   useEffect(() => {
     if (!mapRef.current) return;
 
-    if (createdMarkerRef.current) {
-      mapRef.current.removeLayer(createdMarkerRef.current);
-      createdMarkerRef.current = null;
+    if (guessMarkerRef.current) {
+      mapRef.current.removeLayer(guessMarkerRef.current);
+      guessMarkerRef.current = null;
     }
 
-    if (createdPin.location) {
-      // If submitted and correct, show green; otherwise brown
-      const isCorrect = gameState === 'submitted' && result?.createdCorrect;
+    if (guessPin.location) {
+      const isCorrect = gameState === 'submitted' && result?.correct;
       const pinColor = isCorrect ? 'green' : 'lightBrown';
-      const pinLabel = isCorrect ? '✓ Correct!' : 'Where created?';
+      const roundLabel = painting ? painting.rounds[currentRoundIndex]?.description || 'Guess' : 'Guess';
+      const pinLabel = isCorrect ? '✓ Correct!' : `Guess: ${roundLabel}`;
 
-      const marker = L.marker(
-        [createdPin.location.lat, createdPin.location.lng],
-        {
-          icon: createPinIcon(pinColor, pinLabel),
-          draggable: gameState === 'playing',
-        }
-      ).addTo(mapRef.current);
+      const marker = L.marker([guessPin.location.lat, guessPin.location.lng], {
+        icon: createPinIcon(pinColor, pinLabel),
+        draggable: gameState === 'playing',
+      }).addTo(mapRef.current);
 
       marker.on('dragend', (e) => {
         const newPos = e.target.getLatLng();
-        setCreatedPin({ lat: newPos.lat, lng: newPos.lng });
+        setGuessPin({ lat: newPos.lat, lng: newPos.lng });
       });
 
-      createdMarkerRef.current = marker;
+      guessMarkerRef.current = marker;
     }
-  }, [createdPin.location, gameState, result, setCreatedPin]);
+  }, [guessPin.location, gameState, result, setGuessPin, painting, currentRoundIndex]);
 
-  // Update current pin marker
+
+  // Handle provenance visualization (journey line)
   useEffect(() => {
-    if (!mapRef.current) return;
+    if (!mapRef.current || !painting) return;
 
-    if (currentMarkerRef.current) {
-      mapRef.current.removeLayer(currentMarkerRef.current);
-      currentMarkerRef.current = null;
-    }
+    // Only draw or update the line when we're in a state to show it
+    if (gameState === 'submitted' || gameState === 'playing') {
+      console.log('Drawing provenance line', { currentRoundIndex, gameState });
 
-    if (currentPin.location) {
-      // If submitted and correct, show green; otherwise brown
-      const isCorrect = gameState === 'submitted' && result?.currentCorrect;
-      const pinColor = isCorrect ? 'green' : 'darkBrown';
-      const pinLabel = isCorrect ? '✓ Correct!' : 'Where now?';
+      // Draw the journey line up to previous location
 
-      const marker = L.marker(
-        [currentPin.location.lat, currentPin.location.lng],
-        {
-          icon: createPinIcon(pinColor, pinLabel),
-          draggable: gameState === 'playing',
+      var provenanceLocations = []
+      if (gameState === 'submitted'){
+        provenanceLocations = painting.rounds.slice(0, currentRoundIndex+1).map(round => round.location);
+      } else {
+        provenanceLocations = painting.rounds.slice(0, currentRoundIndex).map(round => round.location);
+      }
+      
+      console.log('Provenance locations:', { 
+        locations: provenanceLocations, 
+        roundIndex: currentRoundIndex,
+        totalRounds: painting.rounds.length,
+        hasEnoughPoints: provenanceLocations.length >= 1
+      });
+      
+      if (provenanceLocations.length >= 1) {
+        // Clear any existing line before drawing new one
+        if (provenanceLineRef.current) {
+          mapRef.current.removeLayer(provenanceLineRef.current);
+          provenanceLineRef.current = null;
+        }
+      const line = L.polyline(
+        provenanceLocations.map(loc => [loc.lat, loc.lng]),
+        { 
+          color: '#FF4B4B', // Red color for provenance
+          weight: 3,
+          opacity: 0.8,
+          dashArray: '10,10',
         }
       ).addTo(mapRef.current);
-
-      marker.on('dragend', (e) => {
-        const newPos = e.target.getLatLng();
-        setCurrentPin({ lat: newPos.lat, lng: newPos.lng });
-      });
-
-      currentMarkerRef.current = marker;
+      
+      provenanceLineRef.current = line;
     }
-  }, [currentPin.location, gameState, result, setCurrentPin]);
 
-  // Show journey lines after submission
+    // Cleanup function to remove lines and markers when unmounting or painting changes
+    return () => {
+      if (provenanceLineRef.current) {
+        mapRef.current?.removeLayer(provenanceLineRef.current);
+        provenanceLineRef.current = null;
+      }
+      correctMarkersRef.current.forEach(marker => mapRef.current?.removeLayer(marker));
+      correctMarkersRef.current = [];
+    };
+  }}, [painting, currentRoundIndex, gameState]);
+
+  // Handle guess lines and current round visualization
   useEffect(() => {
     if (!mapRef.current || !painting || gameState !== 'submitted' || !result) return;
 
-    // Clear old lines and markers
-    resultLinesRef.current.forEach(line => mapRef.current?.removeLayer(line));
+    // Clear only the guess lines
+    resultLinesRef.current.forEach((line) => mapRef.current?.removeLayer(line));
     resultLinesRef.current = [];
-    correctMarkersRef.current.forEach(marker => mapRef.current?.removeLayer(marker));
-    correctMarkersRef.current = [];
 
-    // Draw USER'S imagined journey (BROWN line from created guess to current guess)
-    if (createdPin.location && currentPin.location) {
-      const userJourneyLine = L.polyline(
-        [
-          [createdPin.location.lat, createdPin.location.lng],
-          [currentPin.location.lat, currentPin.location.lng],
-        ],
-        {
-          color: '#8B6F47', // Brown - user's imagined path
-          weight: 3,
-          opacity: 0.7,
-          dashArray: '5, 10',
+    // Draw line from user's guess to the true location for the current sub-round
+    if (guessPin.location) {
+      const trueLoc = painting.rounds[currentRoundIndex]?.location;
+      if (trueLoc) {
+        const userToTrue = L.polyline(
+          [
+            [guessPin.location.lat, guessPin.location.lng],
+            [trueLoc.lat, trueLoc.lng],
+          ],
+          { color: '#8B6F47', weight: 3, opacity: 0.8, dashArray: '5,6' }
+        ).addTo(mapRef.current!);
+        resultLinesRef.current.push(userToTrue);
+
+        // If guess was incorrect, show the true location marker
+        if (!result.correct) {
+          const correctMarker = L.marker([trueLoc.lat, trueLoc.lng], { icon: createPinIcon('green', '✓ Answer') }).addTo(mapRef.current!);
+          correctMarkersRef.current.push(correctMarker);
         }
-      ).addTo(mapRef.current);
-      resultLinesRef.current.push(userJourneyLine);
-    }
-
-    // Draw ACTUAL painting journey (GREEN line from created to current location)
-    const actualJourneyLine = L.polyline(
-      [
-        [painting.createdLocation.lat, painting.createdLocation.lng],
-        [painting.currentLocation.lat, painting.currentLocation.lng],
-      ],
-      {
-        color: '#10B981', // Green - actual path
-        weight: 3,
-        opacity: 0.7,
-        dashArray: '5, 10',
       }
-    ).addTo(mapRef.current);
-    resultLinesRef.current.push(actualJourneyLine);
-
-    // Add correct location markers only if user was wrong
-    if (!result.createdCorrect) {
-      const correctCreatedMarker = L.marker(
-        [painting.createdLocation.lat, painting.createdLocation.lng],
-        { icon: createPinIcon('green', 'Created here') }
-      ).addTo(mapRef.current);
-      correctMarkersRef.current.push(correctCreatedMarker);
     }
-
-    if (!result.currentCorrect) {
-      const correctCurrentMarker = L.marker(
-        [painting.currentLocation.lat, painting.currentLocation.lng],
-        { icon: createPinIcon('green', 'Located here') }
-      ).addTo(mapRef.current);
-      correctMarkersRef.current.push(correctCurrentMarker);
-    }
-  }, [gameState, result, painting, createdPin.location, currentPin.location]);
+  }, [gameState, painting, currentRoundIndex]);
 
   // Animate boat with painting miniature along journey path
   useEffect(() => {
     if (!mapRef.current || !painting || gameState !== 'submitted') return;
 
-    // Clear existing boat if any
-    if (boatMarkerRef.current) {
-      mapRef.current.removeLayer(boatMarkerRef.current);
-      boatMarkerRef.current = null;
-    }
-    if (animationFrameRef.current) {
-      cancelAnimationFrame(animationFrameRef.current);
-      animationFrameRef.current = null;
-    }
+    // We no longer animate a ship. The animated provenance reveal is handled
+    // in the provenance drawing effect above.
+    return;
+  }, [gameState, painting, guessPin, currentRoundIndex]);
 
-    // Create boat icon with painting thumbnail
-    const boatIcon = L.divIcon({
-      className: 'boat-marker',
-      html: `
-        <div style="display: flex; align-items: center; gap: 8px; transform: translateX(-50%) translateY(-100%);">
-          <div style="font-size: 40px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));">⛵</div>
-          <div style="width: 50px; height: 50px; border: 3px solid white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.3); background: white;">
-            <img src="${painting.imageUrl}" style="width: 100%; height: 100%; object-fit: cover;" />
-          </div>
-        </div>
-      `,
-      iconSize: [100, 60],
-      iconAnchor: [50, 60],
-    });
-
-    // Start position (where created)
-    const startLat = painting.createdLocation.lat;
-    const startLng = painting.createdLocation.lng;
-
-    // End position (where now)
-    const endLat = painting.currentLocation.lat;
-    const endLng = painting.currentLocation.lng;
-
-    // Calculate bounds to zoom in on the journey
-    const bounds = L.latLngBounds(
-      [Math.min(startLat, endLat), Math.min(startLng, endLng)],
-      [Math.max(startLat, endLat), Math.max(startLng, endLng)]
-    );
-    
-    // Add padding to the bounds for better view
-    const paddedBounds = bounds.pad(0.1);
-    
-    // Zoom to fit the journey path
-    mapRef.current.fitBounds(paddedBounds, { 
-      padding: [20, 20],
-      maxZoom: 8 // Limit max zoom to keep it reasonable
-    });
-
-    // Create marker at start position
-    const boatMarker = L.marker([startLat, startLng], { icon: boatIcon }).addTo(mapRef.current);
-    boatMarkerRef.current = boatMarker;
-
-    // Animate the boat
-    const duration = 4000; // 4 seconds
-    const startTime = Date.now();
-
-    const animate = () => {
-      const elapsed = Date.now() - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-
-      // Easing function for smooth animation
-      const easeProgress = progress < 0.5
-        ? 2 * progress * progress
-        : 1 - Math.pow(-2 * progress + 2, 2) / 2;
-
-      // Calculate current position
-      const currentLat = startLat + (endLat - startLat) * easeProgress;
-      const currentLng = startLng + (endLng - startLng) * easeProgress;
-
-      // Update marker position
-      if (boatMarkerRef.current) {
-        boatMarkerRef.current.setLatLng([currentLat, currentLng]);
-      }
-
-      // Continue animation if not finished
-      if (progress < 1) {
-        animationFrameRef.current = requestAnimationFrame(animate);
-      }
-    };
-
-    animate();
-
-    return () => {
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
-    };
-  }, [gameState, painting]);
-
-  // Clear all result markers when transitioning to next painting
+  // Clear all markers and lines when transitioning to next painting
   useEffect(() => {
     if (gameState === 'loading' && mapRef.current) {
+      console.log('Clearing on loading state');
       // Clear result lines
       resultLinesRef.current.forEach(line => mapRef.current?.removeLayer(line));
       resultLinesRef.current = [];
 
-      // Clear correct answer markers
-      correctMarkersRef.current.forEach(marker => mapRef.current?.removeLayer(marker));
-      correctMarkersRef.current = [];
+      // Clear guess markers only
+      if (guessMarkerRef.current) {
+        mapRef.current.removeLayer(guessMarkerRef.current);
+        guessMarkerRef.current = null;
+      }
 
-      // Clear boat marker
-      if (boatMarkerRef.current) {
-        mapRef.current.removeLayer(boatMarkerRef.current);
-        boatMarkerRef.current = null;
+      // Clear any animated provenance and cancel animations
+      if (animatedProvenanceRef.current) {
+        mapRef.current.removeLayer(animatedProvenanceRef.current);
+        animatedProvenanceRef.current = null;
+      }
+      if (provenanceLineRef.current) {
+        mapRef.current.removeLayer(provenanceLineRef.current);
+        provenanceLineRef.current = null;
       }
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
@@ -376,7 +291,11 @@ export const GameMap: React.FC = () => {
 
   return (
     <div className="w-full h-full relative">
-      <div ref={mapContainerRef} className="w-full h-full z-0" />
+      <div ref={mapContainerRef} className="w-full h-full z-0 map-fill-parent" />
+      {/* Overlay StoryPanel as a side panel on the bottom left */}
+      <div className="absolute bottom-4 left-4 z-10 max-w-xs w-full">
+        <StoryPanel />
+      </div>
     </div>
   );
 };

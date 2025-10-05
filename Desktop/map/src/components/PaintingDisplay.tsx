@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useGame } from '../contexts/GameContext';
 
-export const PaintingDisplay: React.FC = () => {
+export const PaintingDisplay: React.FC<{ sidebar?: boolean }> = ({ sidebar = false }) => {
   const { painting, gameState } = useGame();
 
   if (gameState === 'loading') {
@@ -29,16 +29,19 @@ export const PaintingDisplay: React.FC = () => {
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-      className="w-full h-full flex items-center justify-center p-4"
     >
       <img
         src={painting.imageUrl}
         alt={painting.title}
-        className="w-full h-full object-contain"
+        style={sidebar ? { maxWidth: '350px', maxHeight: '350px' } : undefined}
         onError={(e) => {
           (e.target as HTMLImageElement).src = 'https://via.placeholder.com/600x400?text=Painting+Image';
         }}
       />
+      <div className="meta painting-meta">
+        <div className="font-semibold">{painting.title}</div>
+        <div className="text-xs">{painting.artist}</div>
+      </div>
     </motion.div>
   );
 };

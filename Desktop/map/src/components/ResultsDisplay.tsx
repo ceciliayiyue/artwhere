@@ -4,7 +4,7 @@ import Confetti from 'react-confetti';
 import { useGame } from '../contexts/GameContext';
 
 export const ResultsDisplay: React.FC = () => {
-  const { result, gameState, resetPins, setResult, round, setRound, setGameState } = useGame();
+  const { result, gameState, resetPins, setResult, round, setRound, setGameState, painting, currentRoundIndex, setCurrentRoundIndex } = useGame();
   const [showConfetti, setShowConfetti] = useState(false);
   const [windowSize, setWindowSize] = useState({ width: window.innerWidth, height: window.innerHeight });
 
@@ -18,7 +18,7 @@ export const ResultsDisplay: React.FC = () => {
 
   useEffect(() => {
     if (gameState === 'submitted' && result) {
-      if (result.createdCorrect && result.currentCorrect) {
+      if (result.correct) {
         setShowConfetti(true);
         setTimeout(() => setShowConfetti(false), 5000);
       }
@@ -43,14 +43,26 @@ export const ResultsDisplay: React.FC = () => {
   const handleNext = () => {
     resetPins();
     setResult(null);
+    // Advance sub-round within the same painting if available
+    if (painting) {
+      const nextIndex = currentRoundIndex + 1;
+      if (nextIndex < painting.rounds.length) {
+        setCurrentRoundIndex((prev) => prev + 1);
+        setGameState('loading');
+        return;
+      }
+    }
+    // Otherwise advance to the next painting
     setRound(round + 1);
+    setCurrentRoundIndex(0);
     setGameState('loading');
   };
 
   if (gameState !== 'submitted' || !result) return null;
 
-  const perfectScore = result.createdCorrect && result.currentCorrect;
-  const partialScore = result.createdCorrect || result.currentCorrect;
+  // For single-round gameplay, result.correct indicates correctness
+  const perfectScore = result.correct; // single round: correct -> treat as perfect for confetti
+  const partialScore = !result.correct && !!result.distance;
 
   return (
     <>
@@ -104,47 +116,16 @@ export const ResultsDisplay: React.FC = () => {
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.3 }}
-                className={`p-2 sm:p-3 rounded-lg ${
-                  result.createdCorrect ? 'bg-white/20' : 'bg-white/10'
-                }`}
-              >
+                className={`p-2 sm:p-3 rounded-lg ${result.correct ? 'bg-white/20' : 'bg-white/10'}`}>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
                     <div className="w-3 h-3 sm:w-4 sm:h-4 bg-blue-500 rounded-full mr-2 sm:mr-3 flex-shrink-0"></div>
-                    <span className="font-semibold text-sm sm:text-base">Where Created?</span>
+                    <span className="font-semibold text-sm sm:text-base">{painting ? painting.rounds[currentRoundIndex].description : 'This round'}</span>
                   </div>
-                  <div className="text-base sm:text-lg font-bold">
-                    {result.createdCorrect ? '✓' : '✗'}
-                  </div>
+                  <div className="text-base sm:text-lg font-bold">{result.correct ? '✓' : '✗'}</div>
                 </div>
-                {!result.createdCorrect && result.createdDistance && (
-                  <p className="text-xs sm:text-sm mt-1 ml-5 sm:ml-7 opacity-90">
-                    Off by {result.createdDistance.toLocaleString()} km
-                  </p>
-                )}
-              </motion.div>
-
-              <motion.div
-                initial={{ x: -20, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ delay: 0.4 }}
-                className={`p-2 sm:p-3 rounded-lg ${
-                  result.currentCorrect ? 'bg-white/20' : 'bg-white/10'
-                }`}
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    <div className="w-3 h-3 sm:w-4 sm:h-4 bg-red-500 rounded-full mr-2 sm:mr-3 flex-shrink-0"></div>
-                    <span className="font-semibold text-sm sm:text-base">Where Now?</span>
-                  </div>
-                  <div className="text-base sm:text-lg font-bold">
-                    {result.currentCorrect ? '✓' : '✗'}
-                  </div>
-                </div>
-                {!result.currentCorrect && result.currentDistance && (
-                  <p className="text-xs sm:text-sm mt-1 ml-5 sm:ml-7 opacity-90">
-                    Off by {result.currentDistance.toLocaleString()} km
-                  </p>
+                {!result.correct && result.distance && (
+                  <p className="text-xs sm:text-sm mt-1 ml-5 sm:ml-7 opacity-90">Off by {result.distance.toLocaleString()} km</p>
                 )}
               </motion.div>
             </div>
@@ -156,7 +137,7 @@ export const ResultsDisplay: React.FC = () => {
                 transition={{ delay: 0.6 }}
                 className="text-center mt-3 sm:mt-4 text-xs sm:text-sm opacity-90"
               >
-                You got both locations correct! Amazing! 🌟
+                Correct! Amazing! 🌟
               </motion.p>
             )}
 
