@@ -11,7 +11,9 @@
                 "name": "Ernestine Seurat born Faivre",
                 "wiki_url": "https://www.wikidata.org/wiki/Q134966049",
                 "wikipedia_url": null,
-                "coordinates": null
+                "coordinates": null,
+                "start_time": "1891-00-00",
+                "end_time": "1899-00-00"
             },
             "location": {
                 "name": "Art Institute of Chicago",
@@ -20,7 +22,9 @@
                 "coordinates": [
                     41.879444444444445,
                     -87.62388888888889
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/A_Sunday_on_La_Grande_Jatte,_Georges_Seurat,_1884.jpg"
@@ -32,7 +36,9 @@
                 "coordinates": [
                     47,
                     2
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "location_of_creation": [],
             "significant_event": [],
@@ -80,7 +86,9 @@
                     "coordinates": [
                         52.52138889,
                         13.39555556
-                    ]
+                    ],
+                    "start_time": null,
+                    "end_time": "1937-00-00"
                 },
                 {
                     "name": "Ministry of Public Enlightenment and Propaganda",
@@ -89,13 +97,17 @@
                     "coordinates": [
                         52.512924,
                         13.384529
-                    ]
+                    ],
+                    "start_time": null,
+                    "end_time": null
                 },
                 {
                     "name": "Galerie Fischer",
                     "wiki_url": "https://www.wikidata.org/wiki/Q47001605",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": null,
+                    "end_time": null
                 },
                 {
                     "name": "Kunstmuseum Bern",
@@ -104,7 +116,9 @@
                     "coordinates": [
                         46.951111111111,
                         7.4433333333333
-                    ]
+                    ],
+                    "start_time": "1939-00-00",
+                    "end_time": null
                 }
             ],
             "location": [
@@ -115,13 +129,17 @@
                     "coordinates": [
                         46.95092,
                         7.44344
-                    ]
+                    ],
+                    "start_time": "1939-00-00",
+                    "end_time": null
                 },
                 {
                     "name": "\"degenerate art\" collection",
                     "wiki_url": "https://www.wikidata.org/wiki/Q111796449",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": null,
+                    "end_time": null
                 }
             ],
             "image": {
@@ -164,7 +182,9 @@
                 "coordinates": [
                     40.41388888888889,
                     -3.692222222222222
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": [
                 {
@@ -181,7 +201,9 @@
                 "coordinates": [
                     40.2,
                     -3.5
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "location_of_creation": [],
             "significant_event": [],
@@ -217,7 +239,9 @@
                 "coordinates": [
                     47.554167,
                     7.594167
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Ferdinand_Hodler_-_Der_Genfersee_von_Chexbres_aus.jpg"
@@ -280,7 +304,9 @@
                 "coordinates": [
                     48.861111111111114,
                     2.3358333333333334
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "location": {
                 "name": "Room 702",
@@ -289,7 +315,9 @@
                 "coordinates": [
                     48.860194444444446,
                     2.3361111111111112
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Le_Serment_des_Horaces_-_Jacques-Louis_David_-_Mus\u00e9e_du_Louvre_Peintures_INV_3692_;_MR_1432.jpg"
@@ -302,7 +330,9 @@
                 "coordinates": [
                     41.893055555556,
                     12.482777777778
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "significant_event": [],
             "creator": {
@@ -334,13 +364,17 @@
                     "name": "Ernest Hosched\u00e9",
                     "wiki_url": "https://www.wikidata.org/wiki/Q3057007",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": "1876-01-01",
+                    "end_time": "1878-01-01"
                 },
                 {
                     "name": "Georges de Bellio",
                     "wiki_url": "https://www.wikidata.org/wiki/Q3103671",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": "1878-01-01",
+                    "end_time": "1894-01-26"
                 },
                 {
                     "name": "Mus\u00e9e Marmottan Monet",
@@ -349,7 +383,9 @@
                     "coordinates": [
                         48.859279605407096,
                         2.2673833239064582
-                    ]
+                    ],
+                    "start_time": null,
+                    "end_time": null
                 }
             ],
             "location": [
@@ -360,7 +396,9 @@
                     "coordinates": [
                         48.859279605407096,
                         2.2673833239064582
-                    ]
+                    ],
+                    "start_time": "1938-01-01",
+                    "end_time": "1985-01-01"
                 },
                 {
                     "name": "Porto-Vecchio",
@@ -369,7 +407,9 @@
                     "coordinates": [
                         41.590833333333,
                         9.2797222222222
-                    ]
+                    ],
+                    "start_time": "1985-01-01",
+                    "end_time": "1990-12-01"
                 },
                 {
                     "name": "Mus\u00e9e Marmottan Monet",
@@ -378,7 +418,9 @@
                     "coordinates": [
                         48.859279605407096,
                         2.2673833239064582
-                    ]
+                    ],
+                    "start_time": "1990-12-01",
+                    "end_time": null
                 }
             ],
             "image": {
@@ -392,7 +434,9 @@
                 "coordinates": [
                     49.494166666667,
                     0.10805555555556
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "significant_event": [
                 {
@@ -438,13 +482,17 @@
                 "name": "Louis XIV of France",
                 "wiki_url": "https://www.wikidata.org/wiki/Q7742",
                 "wikipedia_url": null,
-                "coordinates": null
+                "coordinates": null,
+                "start_time": null,
+                "end_time": null
             },
             "location": {
                 "name": "Room 825",
                 "wiki_url": "https://www.wikidata.org/wiki/Q19009660",
                 "wikipedia_url": null,
-                "coordinates": null
+                "coordinates": null,
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Les_Bergers_d'Arcadie_-_Nicolas_Poussin_-_Mus\u00e9e_du_Louvre_Peintures_INV_7300_;_MR_2339.jpg"
@@ -481,13 +529,17 @@
                     "name": "\u00c9douard Manet",
                     "wiki_url": "https://www.wikidata.org/wiki/Q40599",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": "1863-00-00",
+                    "end_time": "1878-00-00"
                 },
                 {
                     "name": "Jean-Baptiste Faure",
                     "wiki_url": "https://www.wikidata.org/wiki/Q320464",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": "1878-00-00",
+                    "end_time": "1898-00-00"
                 },
                 {
                     "name": "Durand-Ruel & Cie.",
@@ -496,19 +548,25 @@
                     "coordinates": [
                         48.874193,
                         2.299587
-                    ]
+                    ],
+                    "start_time": "1898-00-00",
+                    "end_time": "1900-00-00"
                 },
                 {
                     "name": "\u00c9tienne Moreau-N\u00e9laton",
                     "wiki_url": "https://www.wikidata.org/wiki/Q289951",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": "1900-00-00",
+                    "end_time": "1906-00-00"
                 },
                 {
                     "name": "French State",
                     "wiki_url": "https://www.wikidata.org/wiki/Q3591845",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": "1906-01-01",
+                    "end_time": null
                 }
             ],
             "location": {
@@ -518,7 +576,9 @@
                 "coordinates": [
                     48.86,
                     2.326388888888889
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Edouard_Manet_-_Luncheon_on_the_Grass_-_Google_Art_Project.jpg"
@@ -530,7 +590,9 @@
                 "coordinates": [
                     47,
                     2
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "location_of_creation": [],
             "significant_event": [],
@@ -566,7 +628,9 @@
                 "coordinates": [
                     41.89944444,
                     12.47472222
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Caravaggio_\u2014_The_Calling_of_Saint_Matthew.jpg"
@@ -602,61 +666,81 @@
                     "coordinates": [
                         48,
                         14
-                    ]
+                    ],
+                    "start_time": "1946-00-00",
+                    "end_time": null
                 },
                 {
                     "name": "Maria Thins",
                     "wiki_url": "https://www.wikidata.org/wiki/Q4497888",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": "1676-00-00",
+                    "end_time": "1677-00-00"
                 },
                 {
                     "name": "Gerard van Swieten",
                     "wiki_url": "https://www.wikidata.org/wiki/Q711132",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": null,
+                    "end_time": "1772-00-00"
                 },
                 {
                     "name": "Gottfried van Swieten",
                     "wiki_url": "https://www.wikidata.org/wiki/Q549419",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": "1772-00-00",
+                    "end_time": "1803-00-00"
                 },
                 {
                     "name": "Johann Rudolf Czernin von und zu Chudenitz",
                     "wiki_url": "https://www.wikidata.org/wiki/Q87623",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": "1813-00-00",
+                    "end_time": "1845-00-00"
                 },
                 {
                     "name": "Eugen Karl Czernin von und zu Chudenitz",
                     "wiki_url": "https://www.wikidata.org/wiki/Q1372660",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": "1845-00-00",
+                    "end_time": "1868-00-00"
                 },
                 {
                     "name": "Adolf Hitler",
                     "wiki_url": "https://www.wikidata.org/wiki/Q352",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": "1940-00-00",
+                    "end_time": "1945-00-00"
                 },
                 {
                     "name": "Jarom\u00edr Czernin of Chudenice",
                     "wiki_url": "https://www.wikidata.org/wiki/Q66154993",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": "1868-00-00",
+                    "end_time": "1908-00-00"
                 },
                 {
                     "name": "Franz Jaromir Eugen Czernin von und zu Chudenitz",
                     "wiki_url": "https://www.wikidata.org/wiki/Q17282398",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": "1908-00-00",
+                    "end_time": "1932-00-00"
                 },
                 {
                     "name": "Jaromir Czernin",
                     "wiki_url": "https://www.wikidata.org/wiki/Q13736441",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": "1932-00-00",
+                    "end_time": "1940-00-00"
                 }
             ],
             "location": [
@@ -664,7 +748,9 @@
                     "name": null,
                     "wiki_url": "https://www.wikidata.org/wiki/Q110991859",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": null,
+                    "end_time": null
                 },
                 {
                     "name": "F\u00fchrermuseum",
@@ -673,13 +759,17 @@
                     "coordinates": [
                         48.2901,
                         14.292
-                    ]
+                    ],
+                    "start_time": null,
+                    "end_time": null
                 },
                 {
                     "name": "Munich Central Collecting Point",
                     "wiki_url": "https://www.wikidata.org/wiki/Q1053735",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": null,
+                    "end_time": null
                 },
                 {
                     "name": "Vienna",
@@ -688,7 +778,9 @@
                     "coordinates": [
                         48.208333333333336,
                         16.3725
-                    ]
+                    ],
+                    "start_time": null,
+                    "end_time": null
                 }
             ],
             "image": {
@@ -702,7 +794,9 @@
                 "coordinates": [
                     52.01166666666666,
                     4.359166666666667
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "significant_event": [],
             "creator": {
@@ -744,7 +838,9 @@
                 "coordinates": [
                     47.5004,
                     8.729
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Friedrich,_Caspar_David_-_Kreidefelsen_auf_R\u00fcgen.jpg"
@@ -756,7 +852,9 @@
                 "coordinates": [
                     51,
                     10
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "location_of_creation": [],
             "significant_event": [],
@@ -792,7 +890,9 @@
                 "coordinates": [
                     48.147156,
                     11.572302
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": [],
             "country_of_origin": [],
@@ -856,7 +956,9 @@
                 "coordinates": [
                     41.879444444444445,
                     -87.62388888888889
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Grant_Wood_-_American_Gothic_(1930).jpg"
@@ -868,7 +970,9 @@
                 "coordinates": [
                     39.828175,
                     -98.5795
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "location_of_creation": [],
             "significant_event": [],
@@ -904,7 +1008,9 @@
                 "coordinates": [
                     48.148291,
                     11.569985
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/The_Adoration_of_the_Magi_by_Giovanni_Battista_Tiepolo_(1753)_-_Alte_Pinakothek_-_Munich_-_Germany_2017.jpg"
@@ -940,43 +1046,57 @@
                     "coordinates": [
                         40.76166666666667,
                         -73.9775
-                    ]
+                    ],
+                    "start_time": "1939-00-00",
+                    "end_time": null
                 },
                 {
                     "name": "Daniel-Henry Kahnweiler",
                     "wiki_url": "https://www.wikidata.org/wiki/Q67762",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": "1923-00-00",
+                    "end_time": "1924-00-00"
                 },
                 {
                     "name": "Alfred H. Barr",
                     "wiki_url": "https://www.wikidata.org/wiki/Q711362",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": null,
+                    "end_time": null
                 },
                 {
                     "name": "John Quinn",
                     "wiki_url": "https://www.wikidata.org/wiki/Q1701486",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": "1924-00-00",
+                    "end_time": "1926-00-00"
                 },
                 {
                     "name": "Henri Bing",
                     "wiki_url": "https://www.wikidata.org/wiki/Q51562230",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": "1926-00-00",
+                    "end_time": null
                 },
                 {
                     "name": "Emma Ruckstuhl-Siegwart",
                     "wiki_url": "https://www.wikidata.org/wiki/Q136404552",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": null,
+                    "end_time": null
                 },
                 {
                     "name": "Olga H. Guggenheim",
                     "wiki_url": "https://www.wikidata.org/wiki/Q107208734",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": null,
+                    "end_time": null
                 }
             ],
             "location": {
@@ -986,7 +1106,9 @@
                 "coordinates": [
                     40.76166666666667,
                     -73.9775
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/La_Boh\u00e9mienne_endormie.jpg"
@@ -1022,13 +1144,17 @@
                 "name": "French State",
                 "wiki_url": "https://www.wikidata.org/wiki/Q3591845",
                 "wikipedia_url": null,
-                "coordinates": null
+                "coordinates": null,
+                "start_time": null,
+                "end_time": null
             },
             "location": {
                 "name": "Room 853",
                 "wiki_url": "https://www.wikidata.org/wiki/Q19018629",
                 "wikipedia_url": null,
-                "coordinates": null
+                "coordinates": null,
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Portrait_de_Charles_1er,_roi_d'Angleterre,_\u00e0_la_chasse_-_Antoon_van_Dyck_-_Mus\u00e9e_du_Louvre_Peintures_INV_1236_;_MR_666.jpg"
@@ -1064,7 +1190,9 @@
                 "name": "Willem Lormier",
                 "wiki_url": "https://www.wikidata.org/wiki/Q29646370",
                 "wikipedia_url": null,
-                "coordinates": null
+                "coordinates": null,
+                "start_time": null,
+                "end_time": null
             },
             "location": {
                 "name": "Charlottenburg Palace",
@@ -1073,7 +1201,9 @@
                 "coordinates": [
                     52.521111,
                     13.295833
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Antoine_Watteau_-_Pilgrimage_to_Cythera_-_WGA25454.jpg"
@@ -1114,13 +1244,17 @@
                     "coordinates": [
                         47.554167,
                         7.594167
-                    ]
+                    ],
+                    "start_time": null,
+                    "end_time": null
                 },
                 {
                     "name": "\"degenerate art\" collection",
                     "wiki_url": "https://www.wikidata.org/wiki/Q111796449",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": null,
+                    "end_time": null
                 }
             ],
             "image": {
@@ -1157,7 +1291,9 @@
                 "coordinates": [
                     49.8747,
                     8.65306
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Anselm_Feuerbach_-_Iphigenie_(1862).jpg"
@@ -1191,13 +1327,17 @@
                     "name": "Alte Pinakothek, upper floor, gallery I",
                     "wiki_url": "https://www.wikidata.org/wiki/Q29865718",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": null,
+                    "end_time": null
                 },
                 {
                     "name": "Kunstkammer Munich",
                     "wiki_url": "https://www.wikidata.org/wiki/Q99756620",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": null,
+                    "end_time": null
                 }
             ],
             "image": {
@@ -1238,7 +1378,9 @@
                 "coordinates": [
                     40.76166666666667,
                     -73.9775
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Roy_Lichtenstein_Drowning_Girl_narrative.jpg"
@@ -1250,7 +1392,9 @@
                 "coordinates": [
                     39.828175,
                     -98.5795
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "location_of_creation": [],
             "significant_event": [],
@@ -1286,7 +1430,9 @@
                 "coordinates": [
                     41.903055555556,
                     12.454444444444
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": [
                 {
@@ -1331,7 +1477,9 @@
                 "coordinates": [
                     48.149887,
                     11.571114
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": [
                 {
@@ -1348,7 +1496,9 @@
                 "coordinates": [
                     47,
                     2
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "location_of_creation": [],
             "significant_event": [],
@@ -1377,13 +1527,17 @@
                     "name": "Archduke Ernest of Austria",
                     "wiki_url": "https://www.wikidata.org/wiki/Q327156",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": "1594-00-00",
+                    "end_time": null
                 },
                 {
                     "name": "Archduke Leopold Wilhelm of Austria",
                     "wiki_url": "https://www.wikidata.org/wiki/Q437295",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": null,
+                    "end_time": null
                 }
             ],
             "location": [
@@ -1394,7 +1548,9 @@
                     "coordinates": [
                         48.20388055555556,
                         16.3616
-                    ]
+                    ],
+                    "start_time": null,
+                    "end_time": null
                 },
                 {
                     "name": null,
@@ -1403,7 +1559,9 @@
                     "coordinates": [
                         47.65138889,
                         13.73916667
-                    ]
+                    ],
+                    "start_time": null,
+                    "end_time": "1945-00-00"
                 }
             ],
             "image": {
@@ -1447,7 +1605,9 @@
                 "coordinates": [
                     51.4417,
                     7.00417
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Ernst_Ludwig_Kirchner_-_La_Tour_rouge.jpg"
@@ -1483,7 +1643,9 @@
                 "coordinates": [
                     47.554167,
                     7.594167
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": [],
             "country_of_origin": [],
@@ -1524,7 +1686,9 @@
                 "coordinates": [
                     51.50888888888889,
                     -0.12833333333333333
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Turner,_J._M._W._-_The_Fighting_T\u00e9m\u00e9raire_tugged_to_her_last_Berth_to_be_broken.jpg"
@@ -1564,7 +1728,9 @@
                 "coordinates": [
                     52.50861111111111,
                     13.364722222222222
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Ruhe_auf_der_Flucht_nach_\u00c4gypten_-_Gem\u00e4ldegalerie_Berlin_-_5013464.jpg"
@@ -1600,7 +1766,9 @@
                 "coordinates": [
                     48.146944444444,
                     11.563611111111
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Alexej_von_Jawlensky_-_Sommerabend_in_Murnau_-_G_13109_-_Lenbachhaus.jpg"
@@ -1636,7 +1804,9 @@
                 "coordinates": [
                     39.965833333333336,
                     -75.18138888888889
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Montagne_Sainte-Victoire,_par_Paul_C\u00e9zanne_108.jpg"
@@ -1673,7 +1843,9 @@
                     "coordinates": [
                         41.903055555556,
                         12.454444444444
-                    ]
+                    ],
+                    "start_time": null,
+                    "end_time": null
                 },
                 {
                     "name": "Vatican City",
@@ -1682,7 +1854,9 @@
                     "coordinates": [
                         41.904,
                         12.453
-                    ]
+                    ],
+                    "start_time": null,
+                    "end_time": null
                 }
             ],
             "image": [
@@ -1735,13 +1909,17 @@
                     "coordinates": [
                         52.366666666667,
                         4.8833333333333
-                    ]
+                    ],
+                    "start_time": "1885-06-30",
+                    "end_time": null
                 },
                 {
                     "name": "Adriaan van der Hoop",
                     "wiki_url": "https://www.wikidata.org/wiki/Q2778946",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": null,
+                    "end_time": "1854-03-17"
                 }
             ],
             "location": [
@@ -1752,7 +1930,9 @@
                     "coordinates": [
                         52.36,
                         4.885277777777778
-                    ]
+                    ],
+                    "start_time": null,
+                    "end_time": null
                 },
                 {
                     "name": "Amsterdam Museum",
@@ -1761,13 +1941,17 @@
                     "coordinates": [
                         52.370278,
                         4.890833
-                    ]
+                    ],
+                    "start_time": null,
+                    "end_time": null
                 },
                 {
                     "name": "collection Adriaan van der Hoop",
                     "wiki_url": "https://www.wikidata.org/wiki/Q19750488",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": null,
+                    "end_time": null
                 }
             ],
             "image": {
@@ -1800,13 +1984,17 @@
                 "name": "\u00c9tienne Moreau-N\u00e9laton",
                 "wiki_url": "https://www.wikidata.org/wiki/Q289951",
                 "wikipedia_url": null,
-                "coordinates": null
+                "coordinates": null,
+                "start_time": null,
+                "end_time": null
             },
             "location": {
                 "name": "Room 949",
                 "wiki_url": "https://www.wikidata.org/wiki/Q19015236",
                 "wikipedia_url": null,
-                "coordinates": null
+                "coordinates": null,
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Le_pont_de_Narni_-_Jean-Baptiste_Camille_Corot_-_Mus\u00e9e_du_Louvre_Peintures_RF_1613_-_photo_2.jpg"
@@ -1839,13 +2027,17 @@
                     "name": "French State",
                     "wiki_url": "https://www.wikidata.org/wiki/Q3591845",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": null,
+                    "end_time": null
                 },
                 {
                     "name": "Francis I of France",
                     "wiki_url": "https://www.wikidata.org/wiki/Q129857",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": "1519-00-00",
+                    "end_time": "1547-00-00"
                 },
                 {
                     "name": "France",
@@ -1854,7 +2046,9 @@
                     "coordinates": [
                         47,
                         2
-                    ]
+                    ],
+                    "start_time": null,
+                    "end_time": null
                 }
             ],
             "location": [
@@ -1865,7 +2059,9 @@
                     "coordinates": [
                         48.8601,
                         2.3354
-                    ]
+                    ],
+                    "start_time": null,
+                    "end_time": null
                 },
                 {
                     "name": "Louvre Museum",
@@ -1874,7 +2070,9 @@
                     "coordinates": [
                         48.861111111111114,
                         2.3358333333333334
-                    ]
+                    ],
+                    "start_time": "1797-00-00",
+                    "end_time": null
                 }
             ],
             "image": {
@@ -1887,7 +2085,9 @@
                 "coordinates": [
                     43.769444444444446,
                     11.25611111111111
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "location_of_creation": {
                 "name": "Florence",
@@ -1896,7 +2096,9 @@
                 "coordinates": [
                     43.771388888889,
                     11.254166666667
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "significant_event": [
                 {
@@ -1982,7 +2184,9 @@
                 "coordinates": [
                     45.471943,
                     9.187683
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Jacopo_Tintoretto_-_Finding_of_the_body_of_St_Mark.jpg"
@@ -2026,13 +2230,17 @@
                     "name": "Kaiser Friedrich Museumsverein (KFMV)",
                     "wiki_url": "https://www.wikidata.org/wiki/Q1232516",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": null,
+                    "end_time": null
                 },
                 {
                     "name": "Kaiser Friedrich Museumsverein (KFMV)",
                     "wiki_url": "https://www.wikidata.org/wiki/Q1232516",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": "1897-00-00",
+                    "end_time": null
                 }
             ],
             "location": {
@@ -2042,7 +2250,9 @@
                 "coordinates": [
                     52.50861111111111,
                     13.364722222222222
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": [
                 {
@@ -2086,7 +2296,9 @@
                 "coordinates": [
                     45.465833333333,
                     9.1711111111111
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Leonardo_da_Vinci_(1452-1519)_-_The_Last_Supper_(1495-1498).jpg"
@@ -2098,7 +2310,9 @@
                 "coordinates": [
                     43.769444444444446,
                     11.25611111111111
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "location_of_creation": [],
             "significant_event": [],
@@ -2141,7 +2355,9 @@
                 "coordinates": [
                     51.4417,
                     7.00417
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": [],
             "country_of_origin": [],
@@ -2175,7 +2391,9 @@
                 "name": "Andr\u00e9 Breton",
                 "wiki_url": "https://www.wikidata.org/wiki/Q161955",
                 "wikipedia_url": null,
-                "coordinates": null
+                "coordinates": null,
+                "start_time": null,
+                "end_time": null
             },
             "location": {
                 "name": "Italy",
@@ -2184,7 +2402,9 @@
                 "coordinates": [
                     42.5,
                     12.5
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": [],
             "country_of_origin": {
@@ -2194,7 +2414,9 @@
                 "coordinates": [
                     42.5,
                     12.5
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "location_of_creation": [],
             "significant_event": [],
@@ -2229,7 +2451,9 @@
                 "coordinates": [
                     52.366666666667,
                     4.8833333333333
-                ]
+                ],
+                "start_time": "1715-00-00",
+                "end_time": null
             },
             "location": [
                 {
@@ -2239,7 +2463,9 @@
                     "coordinates": [
                         52.36778,
                         4.89556
-                    ]
+                    ],
+                    "start_time": "1642-00-00",
+                    "end_time": "1715-00-00"
                 },
                 {
                     "name": "Royal Palace of Amsterdam",
@@ -2248,7 +2474,9 @@
                     "coordinates": [
                         52.37306,
                         4.89139
-                    ]
+                    ],
+                    "start_time": "1715-00-00",
+                    "end_time": "1808-00-00"
                 },
                 {
                     "name": "Royal Palace of Amsterdam",
@@ -2257,7 +2485,9 @@
                     "coordinates": [
                         52.37306,
                         4.89139
-                    ]
+                    ],
+                    "start_time": "1808-00-00",
+                    "end_time": null
                 },
                 {
                     "name": "Trippenhuis",
@@ -2266,7 +2496,9 @@
                     "coordinates": [
                         52.37122,
                         4.89939
-                    ]
+                    ],
+                    "start_time": "1817-00-00",
+                    "end_time": null
                 },
                 {
                     "name": "Nightwatch hall",
@@ -2275,7 +2507,9 @@
                     "coordinates": [
                         52.359822,
                         4.885017
-                    ]
+                    ],
+                    "start_time": "1885-00-00",
+                    "end_time": null
                 }
             ],
             "image": {
@@ -2288,7 +2522,9 @@
                 "coordinates": [
                     52.316666666667,
                     5.55
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "location_of_creation": {
                 "name": "Amsterdam",
@@ -2297,7 +2533,9 @@
                 "coordinates": [
                     52.36666666666667,
                     4.883333333333333
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "significant_event": {
                 "id": "Q107036510",
@@ -2337,7 +2575,9 @@
                 "coordinates": [
                     40.779444444444444,
                     -73.96333333333334
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/George_Caleb_Bingham_001.jpg"
@@ -2349,7 +2589,9 @@
                 "coordinates": [
                     39.828175,
                     -98.5795
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "location_of_creation": [],
             "significant_event": [],
@@ -2393,7 +2635,9 @@
                 "name": "Marshall O. Roberts",
                 "wiki_url": "https://www.wikidata.org/wiki/Q42389951",
                 "wikipedia_url": null,
-                "coordinates": null
+                "coordinates": null,
+                "start_time": "1852-00-00",
+                "end_time": "1897-00-00"
             },
             "location": {
                 "name": "Metropolitan Museum of Art",
@@ -2402,7 +2646,9 @@
                 "coordinates": [
                     40.779444444444444,
                     -73.96333333333334
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Washington_Crossing_the_Delaware_MET_DP215410.jpg"
@@ -2414,7 +2660,9 @@
                 "coordinates": [
                     39.828175,
                     -98.5795
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "location_of_creation": [],
             "significant_event": [],
@@ -2446,7 +2694,9 @@
                 "coordinates": [
                     48.146944444444,
                     11.563611111111
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Wassily_Kandinsky_-_Improvisation_26_(Rudern)_-_GMS_66_-_Lenbachhaus.jpg"
@@ -2482,7 +2732,9 @@
                 "coordinates": [
                     52.50861111111111,
                     13.364722222222222
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": [
                 {
@@ -2499,7 +2751,9 @@
                 "coordinates": [
                     52.066666666667,
                     -1.3166666666667
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "location_of_creation": {
                 "name": "London",
@@ -2508,7 +2762,9 @@
                 "coordinates": [
                     51.507222222222,
                     -0.1275
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "significant_event": [],
             "creator": {
@@ -2539,7 +2795,9 @@
                 "coordinates": [
                     39.857083333333,
                     -4.0238888888889
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/El_Expolio,_por_El_Greco.jpg"
@@ -2576,7 +2834,9 @@
                     "coordinates": [
                         45.431078,
                         12.328139
-                    ]
+                    ],
+                    "start_time": null,
+                    "end_time": null
                 },
                 {
                     "name": "Venice",
@@ -2585,7 +2845,9 @@
                     "coordinates": [
                         45.439722222222,
                         12.331944444444
-                    ]
+                    ],
+                    "start_time": null,
+                    "end_time": null
                 }
             ],
             "image": {
@@ -2626,13 +2888,17 @@
                     "coordinates": [
                         47,
                         2
-                    ]
+                    ],
+                    "start_time": "1894-02-21",
+                    "end_time": null
                 },
                 {
                     "name": "Gustave Caillebotte",
                     "wiki_url": "https://www.wikidata.org/wiki/Q295144",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": null,
+                    "end_time": "1894-02-21"
                 }
             ],
             "location": {
@@ -2642,7 +2908,9 @@
                 "coordinates": [
                     48.86,
                     2.326388888888889
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre-Auguste_Renoir_067.jpg"
@@ -2654,7 +2922,9 @@
                 "coordinates": [
                     47,
                     2
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "location_of_creation": [],
             "significant_event": [],
@@ -2685,14 +2955,18 @@
                 "name": "Ferdinand VII of Spain",
                 "wiki_url": "https://www.wikidata.org/wiki/Q186256",
                 "wikipedia_url": null,
-                "coordinates": null
+                "coordinates": null,
+                "start_time": null,
+                "end_time": null
             },
             "location": [
                 {
                     "name": "Prado Hall 012",
                     "wiki_url": "https://www.wikidata.org/wiki/Q107338101",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": null,
+                    "end_time": null
                 },
                 {
                     "name": "Royal Palace of Madrid",
@@ -2701,7 +2975,9 @@
                     "coordinates": [
                         40.417955,
                         -3.714312
-                    ]
+                    ],
+                    "start_time": null,
+                    "end_time": null
                 }
             ],
             "image": {
@@ -2714,7 +2990,9 @@
                 "coordinates": [
                     40.2,
                     -3.5
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "location_of_creation": [],
             "significant_event": [],
@@ -2743,7 +3021,9 @@
                 "name": "Tate",
                 "wiki_url": "https://www.wikidata.org/wiki/Q430682",
                 "wikipedia_url": null,
-                "coordinates": null
+                "coordinates": null,
+                "start_time": null,
+                "end_time": null
             },
             "image": [],
             "country_of_origin": [],
@@ -2777,7 +3057,9 @@
                 "coordinates": [
                     40.589167,
                     -4.147778
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": [
                 {
@@ -2810,7 +3092,9 @@
                 "name": "Alte Pinakothek, upper floor, gallery II",
                 "wiki_url": "https://www.wikidata.org/wiki/Q29865825",
                 "wikipedia_url": null,
-                "coordinates": null
+                "coordinates": null,
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Albrecht_D\u00fcrer_-_The_Four_Apostles,_Saints_John,_Peter,_Mark_and_Paul.jpg"
@@ -2850,7 +3134,9 @@
                 "coordinates": [
                     47.554167,
                     7.594167
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": [],
             "country_of_origin": [],
@@ -2880,7 +3166,9 @@
                 "name": "John Julius Angerstein",
                 "wiki_url": "https://www.wikidata.org/wiki/Q3809383",
                 "wikipedia_url": null,
-                "coordinates": null
+                "coordinates": null,
+                "start_time": null,
+                "end_time": null
             },
             "location": {
                 "name": "National Gallery",
@@ -2889,7 +3177,9 @@
                 "coordinates": [
                     51.50888888888889,
                     -0.12833333333333333
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Claude_Lorrain_008.jpg"
@@ -2926,13 +3216,17 @@
                     "coordinates": [
                         50.9375,
                         6.958611
-                    ]
+                    ],
+                    "start_time": null,
+                    "end_time": null
                 },
                 {
                     "name": null,
                     "wiki_url": "https://www.wikidata.org/wiki/Q124695064",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": "1942-11-19",
+                    "end_time": null
                 }
             ],
             "image": {
@@ -2946,7 +3240,9 @@
                 "coordinates": [
                     43.676944444444,
                     4.6286111111111
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "significant_event": [],
             "creator": {
@@ -2977,7 +3273,9 @@
                 "coordinates": [
                     48.860642,
                     2.352245
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Le_Luxe_I,_par_Henri_Matisse.jpg"
@@ -2989,7 +3287,9 @@
                 "coordinates": [
                     47,
                     2
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "location_of_creation": {
                 "name": "Collioure",
@@ -2998,7 +3298,9 @@
                 "coordinates": [
                     42.525555555556,
                     3.0808333333333
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "significant_event": [],
             "creator": {
@@ -3029,7 +3331,9 @@
                 "coordinates": [
                     48.148291,
                     11.569985
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Peter_Paul_Rubens_-_The_Rape_of_the_Daughters_of_Leucippus.jpg"
@@ -3081,7 +3385,9 @@
                 "coordinates": [
                     48.149887,
                     11.571114
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Carl_Spitzweg_-_Die_n\u00e4chtliche_Runde_3072.jpg"
@@ -3117,7 +3423,9 @@
                 "coordinates": [
                     40.671306,
                     -73.96375
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Edward_Hicks_-_The_Peaceable_Kingdom_-_Google_Art_Project.jpg"
@@ -3150,7 +3458,9 @@
                     "name": "Alfred Bruyas",
                     "wiki_url": "https://www.wikidata.org/wiki/Q325271",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": "1854-01-01",
+                    "end_time": "1868-01-01"
                 },
                 {
                     "name": "Mus\u00e9e Fabre",
@@ -3159,7 +3469,9 @@
                     "coordinates": [
                         43.611736111111,
                         3.8801916666667
-                    ]
+                    ],
+                    "start_time": "1868-01-01",
+                    "end_time": null
                 }
             ],
             "location": {
@@ -3169,7 +3481,9 @@
                 "coordinates": [
                     43.611736111111,
                     3.8801916666667
-                ]
+                ],
+                "start_time": "1868-01-01",
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Gustave_Courbet_-_Bonjour_Monsieur_Courbet_-_Mus\u00e9e_Fabre.jpg"
@@ -3206,19 +3520,25 @@
                     "name": "Antonia Duvau\u00e7ey de Nittis",
                     "wiki_url": "https://www.wikidata.org/wiki/Q16735992",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": "1807-01-01",
+                    "end_time": null
                 },
                 {
                     "name": "Fr\u00e9d\u00e9ric Reiset",
                     "wiki_url": "https://www.wikidata.org/wiki/Q3090157",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": null,
+                    "end_time": "1879-04-28"
                 },
                 {
                     "name": "Henri d'Orl\u00e9ans, Duke of Aumale",
                     "wiki_url": "https://www.wikidata.org/wiki/Q712502",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": "1879-04-28",
+                    "end_time": "1886-00-00"
                 },
                 {
                     "name": "Institut de France",
@@ -3227,7 +3547,9 @@
                     "coordinates": [
                         48.8568375,
                         2.3372581
-                    ]
+                    ],
+                    "start_time": "1886-00-00",
+                    "end_time": null
                 }
             ],
             "location": {
@@ -3237,7 +3559,9 @@
                 "coordinates": [
                     49.193944444444,
                     2.4852777777778
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Jean-Auguste-Dominique_Ingres_-_Portrait_de_Madame_Duvaucey_-_Google_Art_Project.jpg"
@@ -3250,7 +3574,9 @@
                 "coordinates": [
                     41.893055555556,
                     12.482777777778
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "significant_event": {
                 "id": "Q194189",
@@ -3292,7 +3618,9 @@
                     "coordinates": [
                         51.05338,
                         13.73466
-                    ]
+                    ],
+                    "start_time": null,
+                    "end_time": null
                 },
                 {
                     "name": "San Sisto, Piacenza",
@@ -3301,7 +3629,9 @@
                     "coordinates": [
                         45.057029,
                         9.692562
-                    ]
+                    ],
+                    "start_time": "1510-00-00",
+                    "end_time": "1754-00-00"
                 },
                 {
                     "name": "Dresden",
@@ -3310,7 +3640,9 @@
                     "coordinates": [
                         51.0493286,
                         13.7381437
-                    ]
+                    ],
+                    "start_time": "1754-00-00",
+                    "end_time": "1946-00-00"
                 },
                 {
                     "name": "Pushkin Museum of Fine Arts",
@@ -3319,7 +3651,9 @@
                     "coordinates": [
                         55.74702868,
                         37.60602901
-                    ]
+                    ],
+                    "start_time": "1946-00-00",
+                    "end_time": "1955-00-00"
                 },
                 {
                     "name": "Dresden",
@@ -3328,7 +3662,9 @@
                     "coordinates": [
                         51.0493286,
                         13.7381437
-                    ]
+                    ],
+                    "start_time": "1955-00-00",
+                    "end_time": null
                 },
                 {
                     "name": null,
@@ -3337,7 +3673,9 @@
                     "coordinates": [
                         47.65138889,
                         13.73916667
-                    ]
+                    ],
+                    "start_time": null,
+                    "end_time": "1945-00-00"
                 }
             ],
             "image": {
@@ -3375,13 +3713,17 @@
                     "name": "Isaac de Camondo",
                     "wiki_url": "https://www.wikidata.org/wiki/Q94319",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": null,
+                    "end_time": null
                 },
                 {
                     "name": "Ambroise Vollard",
                     "wiki_url": "https://www.wikidata.org/wiki/Q459041",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": null,
+                    "end_time": null
                 }
             ],
             "location": {
@@ -3391,7 +3733,9 @@
                 "coordinates": [
                     48.86,
                     2.326388888888889
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Le_Vase_bleu,_par_Paul_C\u00e9zanne.jpg"
@@ -3427,7 +3771,9 @@
                 "coordinates": [
                     53.555,
                     10.003055555555555
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": [
                 {
@@ -3476,7 +3822,9 @@
                     "coordinates": [
                         41.903611111111,
                         12.456388888889
-                    ]
+                    ],
+                    "start_time": null,
+                    "end_time": null
                 },
                 {
                     "name": "Vatican City",
@@ -3485,7 +3833,9 @@
                     "coordinates": [
                         41.904,
                         12.453
-                    ]
+                    ],
+                    "start_time": null,
+                    "end_time": null
                 }
             ],
             "image": {
@@ -3526,7 +3876,9 @@
                 "coordinates": [
                     54.8837,
                     8.7731
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": [],
             "country_of_origin": [],
@@ -3560,7 +3912,9 @@
                 "coordinates": [
                     52.358333333333,
                     4.8811111111111
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Vincent_van_Gogh_-_Zonnebloemen_-_Google_Art_Project.jpg"
@@ -3573,7 +3927,9 @@
                 "coordinates": [
                     43.676944444444,
                     4.6286111111111
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "significant_event": [],
             "creator": {
@@ -3601,37 +3957,49 @@
                     "name": "Diego de Guevara",
                     "wiki_url": "https://www.wikidata.org/wiki/Q2096341",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": null,
+                    "end_time": "1516-00-00"
                 },
                 {
                     "name": "Margaret of Austria, Duchess of Savoy",
                     "wiki_url": "https://www.wikidata.org/wiki/Q157100",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": "1516-07-15",
+                    "end_time": "1530-00-00"
                 },
                 {
                     "name": "Mary of Hungary",
                     "wiki_url": "https://www.wikidata.org/wiki/Q157077",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": "1530-00-00",
+                    "end_time": "1558-00-00"
                 },
                 {
                     "name": "Philip II of Spain",
                     "wiki_url": "https://www.wikidata.org/wiki/Q34417",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": "1558-00-00",
+                    "end_time": "1598-00-00"
                 },
                 {
                     "name": "Charles II of Spain",
                     "wiki_url": "https://www.wikidata.org/wiki/Q36174",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": null,
+                    "end_time": "1700-00-00"
                 },
                 {
                     "name": "James Hay",
                     "wiki_url": "https://www.wikidata.org/wiki/Q25182597",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": "1813-00-00",
+                    "end_time": "1828-00-00"
                 },
                 {
                     "name": "National Gallery",
@@ -3640,7 +4008,9 @@
                     "coordinates": [
                         51.50888888888889,
                         -0.12833333333333333
-                    ]
+                    ],
+                    "start_time": "1842-00-00",
+                    "end_time": null
                 }
             ],
             "location": [
@@ -3651,13 +4021,17 @@
                     "coordinates": [
                         51.50888888888889,
                         -0.12833333333333333
-                    ]
+                    ],
+                    "start_time": null,
+                    "end_time": null
                 },
                 {
                     "name": "Room 28, National Gallery",
                     "wiki_url": "https://www.wikidata.org/wiki/Q124453365",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": null,
+                    "end_time": null
                 }
             ],
             "image": {
@@ -3695,19 +4069,25 @@
                     "name": "Andr\u00e9 Breton",
                     "wiki_url": "https://www.wikidata.org/wiki/Q161955",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": "1926-00-00",
+                    "end_time": null
                 },
                 {
                     "name": "Douglas Cooper",
                     "wiki_url": "https://www.wikidata.org/wiki/Q1252116",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": "1937-00-00",
+                    "end_time": "1937-03-05"
                 },
                 {
                     "name": "Pierre Matisse",
                     "wiki_url": "https://www.wikidata.org/wiki/Q326551",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": "1937-03-05",
+                    "end_time": "1940-03-09"
                 },
                 {
                     "name": "Buffalo AKG Art Museum",
@@ -3716,13 +4096,17 @@
                     "coordinates": [
                         42.93245,
                         -78.875618
-                    ]
+                    ],
+                    "start_time": "1940-03-09",
+                    "end_time": null
                 },
                 {
                     "name": "Ren\u00e9 Gaff\u00e9",
                     "wiki_url": "https://www.wikidata.org/wiki/Q61976851",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": null,
+                    "end_time": null
                 }
             ],
             "location": {
@@ -3732,7 +4116,9 @@
                 "coordinates": [
                     42.93245,
                     -78.875618
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": [],
             "country_of_origin": {
@@ -3742,7 +4128,9 @@
                 "coordinates": [
                     40.2,
                     -3.5
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "location_of_creation": {
                 "name": "Maug Islands",
@@ -3751,7 +4139,9 @@
                 "coordinates": [
                     20.02,
                     145.22222222
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "significant_event": [],
             "creator": {
@@ -3783,13 +4173,17 @@
                     "name": "Hertha Koenig",
                     "wiki_url": "https://www.wikidata.org/wiki/Q1614689",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": null,
+                    "end_time": null
                 },
                 {
                     "name": "Chester Dale",
                     "wiki_url": "https://www.wikidata.org/wiki/Q5093537",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": null,
+                    "end_time": null
                 }
             ],
             "location": {
@@ -3799,7 +4193,9 @@
                 "coordinates": [
                     38.89138888888889,
                     -77.02
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": [],
             "country_of_origin": [],
@@ -3833,7 +4229,9 @@
                 "coordinates": [
                     48.149583,
                     11.571776
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": [],
             "country_of_origin": [],
@@ -3895,7 +4293,9 @@
                 "coordinates": [
                     49.0119,
                     8.4
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": [
                 {
@@ -3936,7 +4336,9 @@
                 "coordinates": [
                     48.149887,
                     11.571114
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Arnold_B\u00f6cklin_-_Im_Spiel_der_Wellen_(1883).jpg"
@@ -3976,7 +4378,9 @@
                 "coordinates": [
                     43.76833333333333,
                     11.255277777777778
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Tiziano's_Venere_di_Urbino_(from_The_History_BLog).jpg"
@@ -3988,7 +4392,9 @@
                 "coordinates": [
                     45.583,
                     12.683
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "location_of_creation": {
                 "name": "Venice",
@@ -3997,7 +4403,9 @@
                 "coordinates": [
                     45.439722222222,
                     12.331944444444
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "significant_event": [],
             "creator": {
@@ -4035,7 +4443,9 @@
                 "name": "Ludwig Jacobs",
                 "wiki_url": "https://www.wikidata.org/wiki/Q108536072",
                 "wikipedia_url": null,
-                "coordinates": null
+                "coordinates": null,
+                "start_time": null,
+                "end_time": null
             },
             "location": {
                 "name": "Alte Nationalgalerie",
@@ -4044,7 +4454,9 @@
                 "coordinates": [
                     52.52081,
                     13.398353
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Adolph_Menzel_-_Fl\u00f6tenkonzert_Friedrichs_des_Gro\u00dfen_in_Sanssouci_-_Google_Art_Project.jpg"
@@ -4077,7 +4489,9 @@
                 "name": "Alte Pinakothek, upper floor, gallery V",
                 "wiki_url": "https://www.wikidata.org/wiki/Q29865831",
                 "wikipedia_url": null,
-                "coordinates": null
+                "coordinates": null,
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Portrait_of_Charles_V,_Holy_Roman_Emperor,_seated_(1500\u20131558),_formerly_attributed_to_Titian_(Alte_Pinakothek,_Munich).jpg"
@@ -4129,7 +4543,9 @@
                 "coordinates": [
                     48.7783,
                     9.1776
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": [],
             "country_of_origin": [],
@@ -4163,7 +4579,9 @@
                 "coordinates": [
                     51.50888888888889,
                     -0.12833333333333333
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/The_Painter's_Daughters_with_a_Cat,_by_Thomas_Gainsborough_017.jpg"
@@ -4203,7 +4621,9 @@
                     "coordinates": [
                         43.76833333333333,
                         11.255277777777778
-                    ]
+                    ],
+                    "start_time": null,
+                    "end_time": null
                 },
                 {
                     "name": "Urbino",
@@ -4212,13 +4632,17 @@
                     "coordinates": [
                         43.725238888889,
                         12.6372
-                    ]
+                    ],
+                    "start_time": null,
+                    "end_time": null
                 },
                 {
                     "name": "Room A9 Paolo Uccello - Filippo Lippi - Piero della Francesca",
                     "wiki_url": "https://www.wikidata.org/wiki/Q123272787",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": null,
+                    "end_time": null
                 }
             ],
             "image": [
@@ -4236,7 +4660,9 @@
                 "coordinates": [
                     42.5,
                     12.5
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "location_of_creation": [],
             "significant_event": [],
@@ -4315,7 +4741,9 @@
                 "coordinates": [
                     40.416041,
                     -3.694925
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": [],
             "country_of_origin": [],
@@ -4349,7 +4777,9 @@
                 "coordinates": [
                     53.072778,
                     8.813611
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Liebermann_-_Papageienallee.jpeg"
@@ -4381,7 +4811,9 @@
                 "name": "Isaac de Camondo",
                 "wiki_url": "https://www.wikidata.org/wiki/Q94319",
                 "wikipedia_url": null,
-                "coordinates": null
+                "coordinates": null,
+                "start_time": null,
+                "end_time": null
             },
             "location": {
                 "name": "Mus\u00e9e d'Orsay",
@@ -4390,7 +4822,9 @@
                 "coordinates": [
                     48.86,
                     2.326388888888889
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Edgar_Degas_-_The_Ballet_Class_-_Google_Art_Project.jpg"
@@ -4430,7 +4864,9 @@
                 "coordinates": [
                     45.440555555556,
                     12.333888888889
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Francesco_Guardi_-_View_of_Piazzetta_San_Marco_towards_the_San_Giorgio_Maggiore_-_WGA10867.jpg"
@@ -4462,7 +4898,9 @@
                 "name": "William Church Osborn",
                 "wiki_url": "https://www.wikidata.org/wiki/Q8006807",
                 "wikipedia_url": null,
-                "coordinates": null
+                "coordinates": null,
+                "start_time": null,
+                "end_time": "1949-00-00"
             },
             "location": {
                 "name": "Metropolitan Museum of Art",
@@ -4471,7 +4909,9 @@
                 "coordinates": [
                     40.779444444444444,
                     -73.96333333333334
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Paul_Gauguin_-_Deux_Tahitiennes.jpg"
@@ -4484,7 +4924,9 @@
                 "coordinates": [
                     -17.666666666667,
                     -149.46666666667
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "significant_event": [],
             "creator": {
@@ -4516,13 +4958,17 @@
                     "coordinates": [
                         48.149887,
                         11.571114
-                    ]
+                    ],
+                    "start_time": null,
+                    "end_time": null
                 },
                 {
                     "name": "\"degenerate art\" collection",
                     "wiki_url": "https://www.wikidata.org/wiki/Q111796449",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": null,
+                    "end_time": null
                 }
             ],
             "image": {
@@ -4559,7 +5005,9 @@
                 "coordinates": [
                     48.149583,
                     11.571776
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": [
                 {
@@ -4601,7 +5049,9 @@
                     "name": "Uffizi Gallery - Room 11-12, Botticelli's",
                     "wiki_url": "https://www.wikidata.org/wiki/Q61776682",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": null,
+                    "end_time": null
                 },
                 {
                     "name": "Villa Castello",
@@ -4610,7 +5060,9 @@
                     "coordinates": [
                         43.819444,
                         11.228167
-                    ]
+                    ],
+                    "start_time": "1568-00-00",
+                    "end_time": null
                 },
                 {
                     "name": "Uffizi Gallery",
@@ -4619,7 +5071,9 @@
                     "coordinates": [
                         43.76833333333333,
                         11.255277777777778
-                    ]
+                    ],
+                    "start_time": null,
+                    "end_time": null
                 },
                 {
                     "name": "Palazzo Medici Riccardi",
@@ -4628,7 +5082,9 @@
                     "coordinates": [
                         43.775288,
                         11.255986
-                    ]
+                    ],
+                    "start_time": null,
+                    "end_time": null
                 },
                 {
                     "name": "Bedroom of Lorenzo il Magnifico of Palazzo Medici",
@@ -4637,7 +5093,9 @@
                     "coordinates": [
                         43.77522,
                         11.25557
-                    ]
+                    ],
+                    "start_time": "1479-00-00",
+                    "end_time": null
                 }
             ],
             "image": {
@@ -4689,7 +5147,9 @@
                     "coordinates": [
                         52.37741,
                         4.6302
-                    ]
+                    ],
+                    "start_time": null,
+                    "end_time": null
                 },
                 {
                     "name": "Frans Hals Museum",
@@ -4698,7 +5158,9 @@
                     "coordinates": [
                         52.376609,
                         4.633598
-                    ]
+                    ],
+                    "start_time": null,
+                    "end_time": null
                 }
             ],
             "location": [
@@ -4709,7 +5171,9 @@
                     "coordinates": [
                         52.376609,
                         4.633598
-                    ]
+                    ],
+                    "start_time": null,
+                    "end_time": null
                 },
                 {
                     "name": "Proveniershuis",
@@ -4718,7 +5182,9 @@
                     "coordinates": [
                         52.37741,
                         4.6302
-                    ]
+                    ],
+                    "start_time": null,
+                    "end_time": "1680-00-00"
                 },
                 {
                     "name": "Prinsenhof",
@@ -4727,7 +5193,9 @@
                     "coordinates": [
                         52.38132,
                         4.63402
-                    ]
+                    ],
+                    "start_time": "1680-00-00",
+                    "end_time": "1690-00-00"
                 },
                 {
                     "name": "Frans Hals Museum",
@@ -4736,7 +5204,9 @@
                     "coordinates": [
                         52.376609,
                         4.633598
-                    ]
+                    ],
+                    "start_time": "1862-00-00",
+                    "end_time": null
                 }
             ],
             "image": {
@@ -4750,7 +5220,9 @@
                 "coordinates": [
                     52.380277777778,
                     4.6405555555556
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "significant_event": [],
             "creator": {
@@ -4781,7 +5253,9 @@
                 "coordinates": [
                     51.50888888888889,
                     -0.12833333333333333
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Diego_Vel\u00e1zquez_-_Rokeby_Venus.jpg"
@@ -4814,13 +5288,17 @@
                     "name": "Eug\u00e8ne Delacroix",
                     "wiki_url": "https://www.wikidata.org/wiki/Q33477",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": null,
+                    "end_time": "1831-00-00"
                 },
                 {
                     "name": "French State",
                     "wiki_url": "https://www.wikidata.org/wiki/Q3591845",
                     "wikipedia_url": null,
-                    "coordinates": null
+                    "coordinates": null,
+                    "start_time": "1831-00-00",
+                    "end_time": null
                 }
             ],
             "location": {
@@ -4830,7 +5308,9 @@
                 "coordinates": [
                     48.8605,
                     2.33494
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/La_Libert\u00e9_guidant_le_peuple_-_Eug\u00e8ne_Delacroix_-_Mus\u00e9e_du_Louvre_Peintures_RF_129_-_apr\u00e8s_restauration_2024.jpg"
@@ -4842,7 +5322,9 @@
                 "coordinates": [
                     47,
                     2
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "location_of_creation": {
                 "name": "Paris",
@@ -4851,7 +5333,9 @@
                 "coordinates": [
                     48.85666666666667,
                     2.352222222222222
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "significant_event": [
                 {
@@ -4902,7 +5386,9 @@
                 "name": "Augustus II the Strong",
                 "wiki_url": "https://www.wikidata.org/wiki/Q53437",
                 "wikipedia_url": null,
-                "coordinates": null
+                "coordinates": null,
+                "start_time": "1699-00-00",
+                "end_time": null
             },
             "location": {
                 "name": "Gem\u00e4ldegalerie Alte Meister",
@@ -4911,7 +5397,9 @@
                 "coordinates": [
                     51.05338,
                     13.73466
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Giorgione_-_Sleeping_Venus_-_Google_Art_Project_2.jpg"
@@ -4970,7 +5458,9 @@
                 "coordinates": [
                     43.68611111,
                     7.23277778
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": [],
             "country_of_origin": [],
@@ -5004,7 +5494,9 @@
                 "coordinates": [
                     41.879444444444445,
                     -87.62388888888889
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Henri_de_Toulouse-Lautrec_-_At_the_Moulin_Rouge_-_1928.610_-_Art_Institute_of_Chicago.jpg"
@@ -5044,7 +5536,9 @@
                 "coordinates": [
                     46.2,
                     6.15
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Pierre-Auguste_Renoir_-_Gabrielle_aux_Bijoux.jpg"
@@ -5080,7 +5574,9 @@
                 "coordinates": [
                     49.44377,
                     9.74891
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": {
                 "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Mathis_Gothart_Gr\u00fcnewald_001.jpg"
@@ -5115,7 +5611,9 @@
                 "coordinates": [
                     50.1097,
                     8.6825
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "location": {
                 "name": "St\u00e4del Museum",
@@ -5124,7 +5622,9 @@
                 "coordinates": [
                     50.1032,
                     8.6737
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": [
                 {
@@ -5158,7 +5658,9 @@
                 "coordinates": [
                     47.554167,
                     7.594167
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": [],
             "country_of_origin": [],
@@ -5188,7 +5690,9 @@
                 "name": "Harry Torczyner",
                 "wiki_url": "https://www.wikidata.org/wiki/Q3127932",
                 "wikipedia_url": null,
-                "coordinates": null
+                "coordinates": null,
+                "start_time": null,
+                "end_time": "1985-00-00"
             },
             "location": {
                 "name": "Israel Museum",
@@ -5197,7 +5701,9 @@
                 "coordinates": [
                     31.7725,
                     35.204166666666666
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "image": [],
             "country_of_origin": [],
@@ -5208,7 +5714,9 @@
                 "coordinates": [
                     50.641111111111,
                     4.6680555555556
-                ]
+                ],
+                "start_time": null,
+                "end_time": null
             },
             "significant_event": [],
             "creator": {
