@@ -281,6 +281,21 @@ export const GameMap: React.FC = () => {
     const endLat = painting.currentLocation.lat;
     const endLng = painting.currentLocation.lng;
 
+    // Calculate bounds to zoom in on the journey
+    const bounds = L.latLngBounds(
+      [Math.min(startLat, endLat), Math.min(startLng, endLng)],
+      [Math.max(startLat, endLat), Math.max(startLng, endLng)]
+    );
+    
+    // Add padding to the bounds for better view
+    const paddedBounds = bounds.pad(0.1);
+    
+    // Zoom to fit the journey path
+    mapRef.current.fitBounds(paddedBounds, { 
+      padding: [20, 20],
+      maxZoom: 8 // Limit max zoom to keep it reasonable
+    });
+
     // Create marker at start position
     const boatMarker = L.marker([startLat, startLng], { icon: boatIcon }).addTo(mapRef.current);
     boatMarkerRef.current = boatMarker;

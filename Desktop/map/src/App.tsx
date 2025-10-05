@@ -63,13 +63,13 @@ const GameContent: React.FC = () => {
   }, [gameState, round, setPainting, setGameState]);
 
   return (
-    <div className="min-h-screen w-screen overflow-y-auto flex flex-col bg-purple-texture">
+    <div className="min-h-screen w-full flex flex-col bg-purple-texture">
       <InstructionsPanel />
 
       <div className="flex justify-center">
-        <div className="w-full md:w-[75%] flex flex-col">
+        <div className="w-full md:w-[85%] flex flex-col">
           {/* Header with Logo centered and GameIntro on the right */}
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-0">
             <div className="flex-1"></div>
             <div className="flex-1 flex justify-center">
               <Header />
@@ -80,18 +80,28 @@ const GameContent: React.FC = () => {
           </div>
 
           {/* Intro text underneath logo */}
-          <div className="flex justify-center mb-6">
-            <p className="text-lg font-medium text-center" style={{ color: '#FFFFEB' }}>
+          <div className="flex justify-center -mt-4 mb-4">
+            <p className="text-lg font-medium text-center italic" style={{ 
+              color: '#FFFFEB', 
+              fontFamily: 'Georgia, serif',
+              fontWeight: 'normal',
+              textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
+              letterSpacing: '0.5px'
+            }}>
               Discover where art was born and where it lives today! 🎨
             </p>
           </div>
 
           {/* Painting and Map Row */}
-          <div className="flex flex-col md:flex-row min-h-[400px] md:min-h-[500px]">
+          <div className="flex flex-col md:flex-row min-h-[400px] md:min-h-[500px] mb-8">
             {/* Left Side: Painting Display */}
             <div className="w-full md:w-[25%] lg:w-[20%] flex flex-col">
               <div className="min-h-[200px] md:min-h-0">
                 <PaintingDisplay />
+              </div>
+              {/* Story Panel - Below Painting */}
+              <div className="mt-4 mr-4">
+                <StoryPanel />
               </div>
             </div>
 
@@ -101,9 +111,6 @@ const GameContent: React.FC = () => {
               <FloatingControlPanel />
             </div>
           </div>
-
-          {/* Story Panel - Below Painting/Map */}
-          <StoryPanel />
         </div>
       </div>
 
