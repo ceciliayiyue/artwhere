@@ -75,11 +75,9 @@ export const GameMap: React.FC = () => {
   useEffect(() => {
     if (!mapContainerRef.current || mapRef.current) return;
 
-  // Let CSS / flexbox control container sizing (App sets full-viewport layout)
-
     const map = L.map(mapContainerRef.current, {
       center: [20, 0],
-      zoom: 2,
+      zoom: 3,
       minZoom: 2,
       maxZoom: 8,
       zoomControl: true,
@@ -171,18 +169,33 @@ export const GameMap: React.FC = () => {
   // Handle provenance visualization (journey line)
   useEffect(() => {
     if (!mapRef.current || !painting) return;
-    console.log('Provenance effect running', { currentRoundIndex, gameState });
 
-    // Clear previous provenance line and markers only when round changes
-    if (provenanceLineRef.current) {
-      mapRef.current.removeLayer(provenanceLineRef.current);
-      provenanceLineRef.current = null;
-    }
+    // Only draw or update the line when we're in a state to show it
+    if (gameState === 'submitted' || gameState === 'playing') {
+      console.log('Drawing provenance line', { currentRoundIndex, gameState });
 
-    // Draw the journey line
-    const provenanceLocations = painting.rounds.slice(0, currentRoundIndex).map(round => round.location);
-    
-    if (provenanceLocations.length >= 2) {
+      // Draw the journey line up to previous location
+
+      var provenanceLocations = []
+      if (gameState === 'submitted'){
+        provenanceLocations = painting.rounds.slice(0, currentRoundIndex+1).map(round => round.location);
+      } else {
+        provenanceLocations = painting.rounds.slice(0, currentRoundIndex).map(round => round.location);
+      }
+      
+      console.log('Provenance locations:', { 
+        locations: provenanceLocations, 
+        roundIndex: currentRoundIndex,
+        totalRounds: painting.rounds.length,
+        hasEnoughPoints: provenanceLocations.length >= 1
+      });
+      
+      if (provenanceLocations.length >= 1) {
+        // Clear any existing line before drawing new one
+        if (provenanceLineRef.current) {
+          mapRef.current.removeLayer(provenanceLineRef.current);
+          provenanceLineRef.current = null;
+        }
       const line = L.polyline(
         provenanceLocations.map(loc => [loc.lat, loc.lng]),
         { 
@@ -194,14 +207,6 @@ export const GameMap: React.FC = () => {
       ).addTo(mapRef.current);
       
       provenanceLineRef.current = line;
-
-      // Add markers for previous locations only
-      // provenanceLocations.slice(0, -1).forEach((loc, index) => {
-      //   const marker = L.marker([loc.lat, loc.lng], {
-      //     icon: createPinIcon('blue', painting.rounds[index].description)
-      //   }).addTo(mapRef.current!);
-      //   correctMarkersRef.current.push(marker);
-      // });
     }
 
     // Cleanup function to remove lines and markers when unmounting or painting changes
@@ -213,7 +218,7 @@ export const GameMap: React.FC = () => {
       correctMarkersRef.current.forEach(marker => mapRef.current?.removeLayer(marker));
       correctMarkersRef.current = [];
     };
-  }, [painting, currentRoundIndex, gameState]);
+  }}, [painting, currentRoundIndex, gameState]);
 
   // Handle guess lines and current round visualization
   useEffect(() => {

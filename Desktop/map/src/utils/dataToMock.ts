@@ -146,7 +146,7 @@ export function generateMockPaintingsFromData(raw: RawData): Painting[] {
         }
       } else if (item.owner?.wiki_url) wikiLink = item.owner.wiki_url;
       rounds.push({
-        description: `Location when ownership changed to ${provenanceLoc.name}`,
+        description: `Location when owned by ${provenanceLoc.name}`,
         location: provenanceLoc,
         wikiLink: provenanceLoc.name ? `https://en.wikipedia.org/wiki/${provenanceLoc.name.replace(/ /g, '_')}` : item.wikibase_article?.wikipedia_url || undefined
       });
