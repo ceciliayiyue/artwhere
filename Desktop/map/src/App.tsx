@@ -53,7 +53,7 @@ const GameContent: React.FC = () => {
             <div className="map-band-inner relative map-fill-parent">
               <GameMap />
               <div className="portrait-overlay">
-                <PaintingDisplay compact />
+                <PaintingDisplay sidebar/>
               </div>
               <FloatingControlPanel />
             </div>
