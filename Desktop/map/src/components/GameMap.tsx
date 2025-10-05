@@ -33,7 +33,7 @@ const createPinIcon = (color: string, label: string) => {
     html: `
       <div style="position: relative;">
         <div style="position: absolute; top: -40px; left: 50%; transform: translateX(-50%); white-space: nowrap;">
-          <span style="background-color: ${fillColor}; color: white; padding: 6px 10px; border-radius: 6px; font-size: 15px; font-weight: 700; box-shadow: 0 4px 8px rgba(0,0,0,0.15), 0 2px 4px rgba(0,0,0,0.1); font-family: 'Outfit', sans-serif;">
+          <span style="background-color: ${fillColor}; color: white; padding: 6px 10px; border-radius: 6px; font-size: 20px; font-weight: 700; box-shadow: 0 4px 8px rgba(0,0,0,0.15), 0 2px 4px rgba(0,0,0,0.1); font-family: 'Outfit', sans-serif;">
             ${label}
           </span>
         </div>
