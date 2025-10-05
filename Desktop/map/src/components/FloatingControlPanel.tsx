@@ -6,7 +6,7 @@ import type { GameResult } from '../types/game';
 
 export const FloatingControlPanel: React.FC = () => {
   const {
-  guessPin,
+    guessPin,
     gameState,
     setGameState,
     painting,
@@ -39,8 +39,8 @@ export const FloatingControlPanel: React.FC = () => {
     setResult(result);
     setGameState('submitted');
 
-    // Update score: 1 point for a correct guess
-    const pointsEarned = correct ? 1 : 0;
+    // Fractional scoring: 1 / number of rounds in this painting
+    const pointsEarned = correct ? 1 / (painting.rounds.length || 1) : 0;
     setScore(score + pointsEarned);
   };
 
@@ -73,39 +73,51 @@ export const FloatingControlPanel: React.FC = () => {
       transition={{ duration: 0.5 }}
       className="absolute top-4 right-4 z-20 bg-green-600 rounded-2xl p-4 shadow-xl"
     >
-      <div className="flex items-center justify-between mb-3 px-2">
-        <div className="text-center flex-1">
-          <p className="text-xs font-semibold uppercase tracking-wide font-druk text-white/80 mb-1">Score</p>
-          <motion.p
-            key={score}
-            initial={{ scale: 1.2, color: '#10B981' }}
-            animate={{ scale: 1, color: '#FFFFEB' }}
-            className="text-2xl font-druk font-black text-white"
-          >
-            {score}
-          </motion.p>
-        </div>
-        <div className="w-px h-8 bg-white/30 mx-2"></div>
-        <div className="text-center flex-1">
-          <p className="text-xs font-semibold uppercase tracking-wide font-druk text-white/80 mb-1">Round</p>
-          <p className="text-2xl font-druk font-black text-white">{round}</p>
+      {/* Painting progress and round info */}
+      <div className="text-center mb-3 px-2">
+        <p className="text-xs text-white/70 mb-3">{`You have explored ${round-1} paintings`}</p>
+
+        <div className="flex items-center justify-center space-x-4">
+          {/* Score column */}
+          <div className="flex flex-col items-center flex-1">
+            <p className="text-xs font-semibold uppercase tracking-wide font-outfit text-white/80 mb-1">Score</p>
+            <motion.p
+              key={score}
+              initial={{ scale: 1.2, color: '#10B981' }}
+              animate={{ scale: 1, color: '#FFFFEB' }}
+              className="text-lg font-outfit font-black text-white"
+            >
+              {score.toFixed(2)}
+            </motion.p>
+          </div>
+
+          <div className="w-px h-8 bg-white/30"></div>
+
+          {/* Round column */}
+          <div className="flex flex-col items-center flex-1">
+            <p className="text-xs font-semibold uppercase tracking-wide font-outfit text-white/80 mb-1">Round</p>
+            <p className="text-lg font-outfit font-black text-white">
+              {painting ? `${currentRoundIndex + 1}/${painting.rounds.length}` : '-'}
+            </p>
+          </div>
         </div>
       </div>
 
+      {/* Buttons */}
       <div className="flex space-x-2">
         {gameState === 'playing' && (
           <>
             <button
               onClick={handleReset}
               disabled={!guessPin.location}
-              className="px-3 py-2 rounded-xl hover:opacity-80 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed font-druk font-bold text-xs uppercase bg-white/20 text-white"
+              className="px-3 py-2 rounded-xl hover:opacity-80 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed font-outfit font-bold text-xs uppercase bg-white/20 text-white"
             >
               Reset
             </button>
             <button
               onClick={handleSubmit}
               disabled={!canSubmit}
-              className={`px-4 py-2 rounded-xl font-druk font-black text-sm uppercase transition-all transform ${
+              className={`px-4 py-2 rounded-xl font-outfit font-black text-sm uppercase transition-all transform ${
                 canSubmit
                   ? 'bg-white text-green-600 hover:scale-105 hover:shadow-lg'
                   : 'bg-white/20 text-white/50 cursor-not-allowed'
@@ -119,21 +131,18 @@ export const FloatingControlPanel: React.FC = () => {
         {gameState === 'submitted' && (
           <button
             onClick={handleNext}
-            className="px-4 py-2 rounded-xl font-druk font-black text-sm uppercase bg-white text-green-600 hover:scale-105 transition-transform shadow-lg"
+            className="px-4 py-2 rounded-xl font-outfit font-black text-sm uppercase bg-white text-green-600 hover:scale-105 transition-transform shadow-lg"
           >
             Next →
           </button>
         )}
       </div>
 
+      {/* Map instructions */}
       {gameState === 'playing' && (
-        <div className="text-xs text-center font-medium font-druk text-white/90 mt-6">
-          {!guessPin.location && (
-            <p>Place a pin on the map for this round</p>
-          )}
-          {guessPin.location && (
-            <p className="text-green-300 font-bold">Ready to submit! 🎨</p>
-          )}
+        <div className="text-xs text-center font-medium font-outfit text-white/90 mt-6">
+          {!guessPin.location && <p>Place a pin on the map.</p>}
+          {guessPin.location && <p className="text-green-300 font-bold">Ready to submit! 🎨</p>}
         </div>
       )}
     </motion.div>

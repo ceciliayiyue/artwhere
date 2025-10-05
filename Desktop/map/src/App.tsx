@@ -1,23 +1,17 @@
 import React, { useEffect } from 'react';
 import { GameProvider, useGame } from './contexts/GameContext';
 import { Header } from './components/Header';
-import { GameIntro } from './components/GameIntro';
+// import { GameIntro } from './components/GameIntro';
 import { FloatingControlPanel } from './components/FloatingControlPanel';
 import { PaintingDisplay } from './components/PaintingDisplay';
 import { GameMap } from './components/GameMap';
-import { InstructionsPanel } from './components/InstructionsPanel';
+// import { InstructionsPanel } from './components/InstructionsPanel';
 import Spacer from './components/Spacer';
 // StoryPanel intentionally not imported here; story content is shown in overlay or elsewhere
 import type { Painting } from './types/game';
 
-// // Mock painting data - in real app, this would come from API
-// const mockPaintings: Painting[] = [
-//   {
-//     id: '1',
 import rawData from '../../../scraping_utils/data.json';
 import generateMockPaintingsFromData, { sampleMockPaintings } from './utils/dataToMock';
-//     title: 'Mona Lisa',
-//     artist: 'Leonardo da Vinci',
 const mockPaintings: Painting[] = sampleMockPaintings(generateMockPaintingsFromData(rawData), 5);
 
 const GameContent: React.FC = () => {

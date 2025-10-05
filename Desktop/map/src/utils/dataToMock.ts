@@ -125,14 +125,58 @@ export function generateMockPaintingsFromData(raw: RawData): Painting[] {
     }
 
     const rounds: RoundData[] = [];
-    if (artistBirth) rounds.push({ description: `${artist}'s birthplace`, location: artistBirth });
-    if (creationLoc) rounds.push({ description: 'Location of creation', location: creationLoc });
-    if (provenanceLoc) rounds.push({ description: 'Relocated To', location: provenanceLoc });
-    if (currentLoc) rounds.push({ description: 'Currently located at', location: currentLoc });
-
+    if (artistBirth) rounds.push({
+      description: `${artist}'s birthplace`,
+      location: artistBirth,
+      wikiLink: item.creator?.name ? `https://en.wikipedia.org/wiki/${item.creator.name.replace(/ /g, '_')}` : item.wikibase_article?.wikipedia_url || item.wikibase_article?.wiki_url || undefined
+    });
+    if (creationLoc) rounds.push({
+      description: 'Location of creation',
+      location: creationLoc,
+      wikiLink:  item.location_of_creation?.name ? `https://en.wikipedia.org/wiki/${item.location_of_creation.name.replace(/ /g, '_')}` : item.wikibase_article?.wikipedia_url   || undefined
+    });
+    if (provenanceLoc) {
+      let wikiLink: string | undefined;
+      if (Array.isArray(item.owner)) {
+        for (const o of item.owner) {
+          if (o.wiki_url) {
+            wikiLink = o.wiki_url;
+            break;
+          }
+        }
+      } else if (item.owner?.wiki_url) wikiLink = item.owner.wiki_url;
+      rounds.push({
+        description: `Location when ownership changed to ${provenanceLoc.name}`,
+        location: provenanceLoc,
+        wikiLink: provenanceLoc.name ? `https://en.wikipedia.org/wiki/${provenanceLoc.name.replace(/ /g, '_')}` : item.wikibase_article?.wikipedia_url || undefined
+      });
+    }
+    if (currentLoc) {
+      let wikiLink: string | undefined;
+      if (Array.isArray(item.location)) {
+        for (const loc of item.location) {
+          if (loc.wiki_url) {
+            wikiLink = loc.wiki_url;
+            break;
+          }
+        }
+      } else if (item.location?.wiki_url) wikiLink = item.location.wiki_url;
+      if (!wikiLink && Array.isArray(item.owner) && item.owner.length && item.owner[0].wiki_url) {
+        wikiLink = item.owner[0].wiki_url;
+      }
+      rounds.push({
+        description: 'Currently located at',
+        location: currentLoc,
+        wikiLink: item.wikibase_article?.wikipedia_url || undefined
+      });
+    }
     if (!rounds.length) {
       const fallback = safeGetCoordinates(item.country_of_origin) || { lat: 0, lng: 0, name: 'Unknown' };
-      rounds.push({ description: 'Location (fallback)', location: fallback });
+      rounds.push({
+        description: 'Location (fallback)',
+        location: fallback,
+        wikiLink: item.country_of_origin?.wiki_url || undefined
+      });
     }
 
     const story = item.significant_event

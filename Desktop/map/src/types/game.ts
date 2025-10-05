@@ -9,6 +9,8 @@ export interface RoundData {
   description: string;
   // The true location for this round
   location: Location;
+  //wiki link for the location, if applicable
+  wikiLink?: string;
 }
 
 export interface Painting {

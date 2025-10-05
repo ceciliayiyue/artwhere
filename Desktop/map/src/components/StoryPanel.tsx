@@ -5,14 +5,19 @@ export const StoryPanel: React.FC = () => {
   const { gameState, result, painting, currentRoundIndex } = useGame();
   const [wikiDescription, setWikiDescription] = useState<string | null>(null);
   const [loadingWiki, setLoadingWiki] = useState(false);
+  const [wikiTitle, setWikiTitle] = useState<string | null>(null);
 
   const shouldShow = gameState === 'submitted' && result && !result.correct;
 
+  // Prefer round-specific wikiLink, fallback to painting.wikiLink
+  const roundWikiLink = painting?.rounds?.[currentRoundIndex]?.wikiLink || painting?.wikiLink;
+
   useEffect(() => {
     const fetchWiki = async () => {
-      const link = painting?.wikiLink;
+      const link = roundWikiLink;
       const match = link?.match(/wiki\/([^#?]+)/);
-      const title = match ? decodeURIComponent(match[1]) : null;
+      const title = match ? decodeURIComponent(match[1]).replace(/_/g, ' ') : null;
+      setWikiTitle(title);
 
       if (title) {
         setLoadingWiki(true);
@@ -44,7 +49,7 @@ export const StoryPanel: React.FC = () => {
     };
 
     fetchWiki();
-  }, [painting?.wikiLink]);
+  }, [roundWikiLink]);
 
   if (!shouldShow) return null;
 
@@ -53,7 +58,7 @@ export const StoryPanel: React.FC = () => {
       <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-lg max-w-sm">
         <div className="text-center mb-3">
           <h3 className="text-xl font-bold text-gray-800 font-druk">
-            {painting?.title}
+            {wikiTitle || painting?.title}
           </h3>
           <p className="text-sm text-gray-600 mt-1">
             Artist: {painting?.artist}
@@ -67,7 +72,7 @@ export const StoryPanel: React.FC = () => {
             <button
               type="button"
               className="w-full text-left bg-transparent border-none outline-none p-0 m-0 transition-colors rounded hover:bg-blue-50  cursor-pointer mt-2"
-              onClick={() => window.open(painting?.wikiLink, '_blank', 'noopener,noreferrer')}
+              onClick={() => window.open(roundWikiLink, '_blank', 'noopener,noreferrer')}
             >
               <span dangerouslySetInnerHTML={{ __html: wikiDescription }} />
             </button>
