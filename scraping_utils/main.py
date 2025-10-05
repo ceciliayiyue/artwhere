@@ -18,7 +18,7 @@ for qid in tqdm(qids):
     data_list.append(data)
 
 json_obj = {"data" : data_list}
-with open('data.json', 'w') as f:
+with open('dataFinal.json', 'w') as f:
     json.dump(json_obj, f)
 
 file.close()
