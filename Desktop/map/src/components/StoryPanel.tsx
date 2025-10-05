@@ -60,9 +60,9 @@ export const StoryPanel: React.FC = () => {
 
   return (
     <div className="w-full mb-4">
-      <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-lg max-w-sm">
+      <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-lg max-w-sm font-outfit">
         <div className="text-center mb-3">
-          <h3 className="text-xl font-bold text-gray-800 font-druk">
+          <h3 className="text-xl font-bold text-gray-800">
             {wikiTitle || painting?.title}
           </h3>
           <p className="text-sm text-gray-600 mt-1">
@@ -89,9 +89,10 @@ export const StoryPanel: React.FC = () => {
 
           {painting && (
             <div className="mt-3 sm:mt-4 p-2 sm:p-4 bg-blue-50 border-l-4 border-blue-500 rounded">
-              <div className="text-xs sm:text-base text-blue-800 font-druk whitespace-pre-line">
-                <span className="font-bold">{painting.rounds[currentRoundIndex].description}</span>{'\n'}Answer: {painting.rounds[currentRoundIndex].location.name}
-              </div>
+              <p className="text-xs sm:text-base text-blue-800 font-semibold">
+                <strong className="text-sm sm:text-lg">Answer: </strong>
+                {painting.rounds[currentRoundIndex].location.name}
+              </p>
             </div>
           )}
         </div>
