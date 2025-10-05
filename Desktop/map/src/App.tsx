@@ -6,7 +6,6 @@ import { FloatingControlPanel } from './components/FloatingControlPanel';
 import { PaintingDisplay } from './components/PaintingDisplay';
 import { GameMap } from './components/GameMap';
 import { InstructionsPanel } from './components/InstructionsPanel';
-import { ControlPanel } from './components/ControlPanel';
 import { StoryPanel } from './components/StoryPanel';
 import type { Painting } from './types/game';
 

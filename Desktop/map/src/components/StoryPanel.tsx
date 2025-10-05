@@ -1,19 +1,10 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { useGame } from '../contexts/GameContext';
-import { getStoryImage } from '../utils/storyImageHelper';
 
 export const StoryPanel: React.FC = () => {
-  const { gameState, result, painting, setGameState } = useGame();
+  const { gameState, result, painting } = useGame();
 
   const shouldShow = gameState === 'submitted' && result && (!result.createdCorrect || !result.currentCorrect);
-
-  // Get dynamic emoji based on story content
-  const storyImage = getStoryImage(painting?.story);
-
-  const handleClose = () => {
-    // Don't close, just acknowledge - user needs to click Next
-  };
 
   if (!shouldShow) return null;
 
