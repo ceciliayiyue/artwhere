@@ -66,10 +66,10 @@ export const StoryPanel: React.FC = () => {
           ) : wikiDescription ? (
             <button
               type="button"
-              className="w-full text-left bg-transparent border-none outline-none p-0 m-0 transition-colors rounded hover:bg-blue-50 hover:underline cursor-pointer mt-2"
+              className="w-full text-left bg-transparent border-none outline-none p-0 m-0 transition-colors rounded hover:bg-blue-50  cursor-pointer mt-2"
               onClick={() => window.open(painting?.wikiLink, '_blank', 'noopener,noreferrer')}
             >
-              <span dangerouslySetInnerHTML={{ __html: wikiDescription }} />...
+              <span dangerouslySetInnerHTML={{ __html: wikiDescription }} />
             </button>
           ) : (
             <span className="italic text-gray-500">

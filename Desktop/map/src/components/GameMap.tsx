@@ -3,6 +3,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useGame } from '../contexts/GameContext';
 import type { Location } from '../types/game';
+import { StoryPanel } from './StoryPanel';
 
 // Fix for default marker icons in Leaflet with Vite
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
@@ -318,6 +319,10 @@ export const GameMap: React.FC = () => {
   return (
     <div className="w-full h-full relative">
       <div ref={mapContainerRef} className="w-full h-full z-0 map-fill-parent" />
+      {/* Overlay StoryPanel as a side panel on the bottom left */}
+      <div className="absolute bottom-4 left-4 z-10 max-w-xs w-full">
+        <StoryPanel />
+      </div>
     </div>
   );
 };

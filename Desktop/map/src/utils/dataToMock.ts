@@ -125,9 +125,9 @@ export function generateMockPaintingsFromData(raw: RawData): Painting[] {
     }
 
     const rounds: RoundData[] = [];
-    if (artistBirth) rounds.push({ description: 'Artist birthplace', location: artistBirth });
+    if (artistBirth) rounds.push({ description: `${artist}'s birthplace`, location: artistBirth });
     if (creationLoc) rounds.push({ description: 'Location of creation', location: creationLoc });
-    if (provenanceLoc) rounds.push({ description: 'Provenance (owner/location)', location: provenanceLoc });
+    if (provenanceLoc) rounds.push({ description: 'Relocated To', location: provenanceLoc });
     if (currentLoc) rounds.push({ description: 'Currently located at', location: currentLoc });
 
     if (!rounds.length) {
@@ -156,6 +156,7 @@ export function generateMockPaintingsFromData(raw: RawData): Painting[] {
       story,
       storyImageUrl: imageUrl,
       wikiLink: wikiLink,
+
     };
 
     return painting;

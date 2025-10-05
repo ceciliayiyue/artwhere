@@ -106,7 +106,7 @@ try {
     }
 
     const rounds = [];
-    if (artistBirth) rounds.push({ description: 'Artist birthplace', location: artistBirth });
+    if (artistBirth) rounds.push({ description: `${artist} birthplace`, location: artistBirth });
     if (creationLoc) rounds.push({ description: 'Location of creation', location: creationLoc });
     if (provenanceLoc) rounds.push({ description: 'Provenance (owner/location)', location: provenanceLoc });
     if (currentLoc) rounds.push({ description: 'Currently located at', location: currentLoc });
