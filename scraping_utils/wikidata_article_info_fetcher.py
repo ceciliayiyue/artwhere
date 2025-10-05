@@ -167,12 +167,15 @@ def fetch_wikidata_entity(qid_or_url):
                 elif key in ["owner", "location", "location_of_creation", "country_of_origin"]:
                     qid = datavalue["id"] if isinstance(datavalue, dict) else datavalue
                     loc_info = location.get_location_info(qid)
+                    start, end = extract_dates(claim)  # <-- added date extraction
                     items.append({
                         "name": loc_info.get("name") if loc_info else None,
                         "wiki_url": f"https://www.wikidata.org/wiki/{qid}" if qid else None,
-                        "wikipedia_url": None,
-                        "coordinates": loc_info.get("coordinates") if loc_info else None
-                    })
+                        "wikipedia_url": None,  # optional: can fill from get_entity_info(qid)["wikipedia_url"]
+                        "coordinates": loc_info.get("coordinates") if loc_info else None,
+                        "start_time": start,
+                        "end_time": end
+    })
 
                 elif key == "movement":
                     qid = datavalue["id"] if isinstance(datavalue, dict) else datavalue

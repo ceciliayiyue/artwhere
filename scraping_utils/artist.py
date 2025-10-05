@@ -52,9 +52,9 @@ def get_person_information(qid):
     return person_info
 
 ## Example usage:
-qid = "Q762"  # Replace with any Q-ID
-info = get_person_information(qid)
-if info:
-    print(f"Information for {qid}: {info}")
-else:
-    print(f"No information found for {qid}")
+# qid = "Q762"  # Replace with any Q-ID
+# info = get_person_information(qid)
+# if info:
+#     print(f"Information for {qid}: {info}")
+# else:
+#     print(f"No information found for {qid}")
