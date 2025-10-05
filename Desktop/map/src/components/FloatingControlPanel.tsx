@@ -129,7 +129,7 @@ export const FloatingControlPanel: React.FC = () => {
       {gameState === 'playing' && (
         <div className="text-xs text-center font-medium font-outfit text-white/90 mt-6">
           {!guessPin.location && (
-            <p>Place a pin on the map for this round</p>
+            <p>Place a pin on the map.</p>
           )}
           {guessPin.location && (
             <p className="text-green-300 font-bold">Ready to submit! 🎨</p>
