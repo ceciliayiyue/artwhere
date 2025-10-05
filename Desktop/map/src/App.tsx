@@ -79,7 +79,7 @@ const GameContent: React.FC = () => {
           </div>
 
           {/* Intro text underneath logo */}
-          <div className="flex justify-center -mt-4 mb-4">
+          <div className="flex justify-center -mt-8 mb-1">
             <p className="text-lg font-bold text-center italic" style={{ 
               color: '#FFFFEB', 
               fontFamily: 'Georgia, serif',
