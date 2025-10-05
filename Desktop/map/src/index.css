@@ -14,15 +14,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-  overflow-y: auto;
 }
 
 #root {
-  width: 100vw;
   min-height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
 }
 
 /* Leaflet custom styling */
@@ -103,4 +98,65 @@ button, .control-element {
 .map-fill-parent {
   height: 100%;
   min-height: 0; /* allow flex children to shrink properly */
+  display: flex;
+  flex-direction: column;
+}
+
+.map-band {
+  position: relative; /* flow under the top strip */
+  width: 100%;
+  /* Map fills remaining viewport height under the top strip */
+  height: 80%;
+  min-height: 80%;
+  max-height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  margin-top: 0;
+}
+
+/* Limit horizontal width so background shows on the sides and center the band */
+.map-band-inner {
+  /* Use a percentage of viewport width but cap to a max so sides show background */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Portrait overlay that sits above the map band */
+.portrait-overlay {
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 60;
+  pointer-events: auto;
+}
+
+/* Small portrait widget used as overlay */
+.portrait-widget {
+  width: var(--portrait-width);
+  height: var(--portrait-height);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background: rgba(255,255,255,0.96);
+  border-radius: 10px;
+  padding: 6px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  overflow: hidden;
+}
+.portrait-widget img { width: 100%; height: auto; max-height: 120px; object-fit: contain; border-radius: 6px; }
+.portrait-widget .meta { margin-top: 8px; text-align: center; font-size: 12px; color: #111827; }
+
+@media (max-width: 640px) {
+  .portrait-overlay { display: none; }
+}
+
+/* Smaller overlay on small screens */
+@media (max-width: 640px) {
+  .map-band { height: 45vh; }
+  .portrait-overlay { display: none; }
 }
